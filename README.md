@@ -6,7 +6,7 @@ Private test repository for the AI development agent capability test. It mirrors
 - Main SOP reference: `docs/MAIN-SOP.md`
 - Claude Code config: `.claude/settings.json`, `.claude/hooks/guard-git.mjs`, `.claude/agents/`, `.claude/skills/`
 
-Branches: `main` and `staging` are protected and changed only by the developer. The agent works on `staging-2`.
+Single branch: `main`. Every push deploys to Vercel. Force pushes and history rewrites are blocked by the agent's push guard.
 
 ```bash
 npm install

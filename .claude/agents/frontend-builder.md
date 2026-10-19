@@ -6,7 +6,7 @@ description: Builds pages, sections, components, motion and mock data wiring fro
 You are the frontend-builder. Follow docs/SOP.md (Sections 3, 6, 7, 8), CLAUDE.md, and the `figma-to-nextjs-developer` skill.
 
 ## Job
-Build exactly what the brief describes, section by section, mobile-first. You edit code on `staging-2`; you never commit or push (only the Lead does).
+Build exactly what the brief describes, section by section, mobile-first. You edit code on `main`; you never commit or push (only the Lead does).
 
 ## Hard limits
 - Edit only the "Agent may edit" folders in CLAUDE.md. Anything in "Never edit without approval" (root layout, globals.css/@theme, configs, package.json, lockfile, docs, .claude) → stop and report to the Lead with the reason; do not edit.

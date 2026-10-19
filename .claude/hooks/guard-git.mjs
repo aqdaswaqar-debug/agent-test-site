@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // PreToolUse guard for the Bash tool (docs/SOP.md Section 6, Lock 2).
-// Blocks: any push not targeting origin/staging-2, force pushes and branch deletes,
-// commits/merges on main or staging, history rewrites, rm -rf, curl/wget,
+// Blocks: any push that is not a plain push to origin/main, force pushes and branch deletes,
+// history rewrites, rm -rf, curl/wget,
 // and reading .env files (except .env.example).
 // Exit code 2 blocks the command and shows the reason to Claude.
 import { execFileSync } from "node:child_process";
 
-const PROTECTED = new Set(["main", "staging"]);
-const WORK_BRANCH = "staging-2";
+const PROTECTED = new Set([]); // single-branch test repo: no protected branches
+const WORK_BRANCH = "main";
 const ALLOWED_REFSPECS = new Set([
   WORK_BRANCH,
   `HEAD:${WORK_BRANCH}`,
@@ -76,7 +76,7 @@ function checkGit(tokens, cwd) {
       block(`push must name the remote and branch explicitly: "git push origin ${WORK_BRANCH}".`);
     }
     for (const r of refspecs) {
-      if (!ALLOWED_REFSPECS.has(r)) block(`pushing "${r}" is not allowed. The agent may push only to ${WORK_BRANCH}; main and staging are changed only by the developer.`);
+      if (!ALLOWED_REFSPECS.has(r)) block(`pushing "${r}" is not allowed. The agent may push only to ${WORK_BRANCH}.`);
     }
     return;
   }
@@ -91,7 +91,7 @@ function checkGit(tokens, cwd) {
   if (["commit", "merge", "cherry-pick", "am", "revert", "pull"].includes(sub)) {
     const branch = currentBranch(gitCwd);
     if (PROTECTED.has(branch)) {
-      block(`you are on "${branch}". The agent never commits, merges or pulls into main or staging. Switch to ${WORK_BRANCH} first.`);
+      block(`you are on "${branch}". Switch to ${WORK_BRANCH} first.`);
     }
   }
 }

@@ -9,7 +9,7 @@ docs/SOP.md is the authority; this skill is the working checklist. If the two ev
 
 ## 1. Before anything
 1. Read docs/SOP.md and CLAUDE.md (once per session; don't re-read unchanged files).
-2. `git fetch` → `git checkout staging-2` → `git pull origin staging-2` → `git status` must be clean.
+2. `git fetch` → `git checkout main` → `git pull origin main` → `git status` must be clean.
 3. Read only the CLAUDE.md Lessons that match this page type.
 
 ## 2. Size the task (when unsure, pick the larger)
@@ -18,7 +18,7 @@ docs/SOP.md is the authority; this skill is the working checklist. If the two ev
 | S | copy or spacing fix, one image | Lead only, then automated checks | G0, G5, G7 |
 | M | one section or component | Lead + frontend-builder + code-reviewer (+ qa-visual if UI) | G0, G1, G3–G7 |
 | L | full page, page with form or data | all specialists needed; stop for human check at G2 | G0–G8 |
-| XL | auth, payments, schema, config, CI, shared layout, main/staging | plan only, stop for written approval | stops at G2 |
+| XL | auth, payments, schema, config, CI, shared layout | plan only, stop for written approval | stops at G2 |
 
 Triggers: design change → design-interpreter (not for S with one obvious value). Form, API route, env var, package or data → security-reviewer. Visible UI change (M+) → qa-visual. Every M/L/XL → code-reviewer.
 
@@ -30,13 +30,13 @@ Triggers: design change → design-interpreter (not for S with one obvious value
 5. **G4 Review:** code-reviewer until zero required fixes; max 3 rounds; re-check changed lines only.
 6. **G5 Automated:** `npm run build`, `npm run lint`, `npx tsc --noEmit` — decided by tool output, never by opinion. Full build once, just before pushing.
 7. **G6 QC + security:** qa-visual checklist; security-reviewer when triggered; no critical/high findings.
-8. **G7 Push:** stage files by name, review `git diff --staged` (only intended files, no secrets, no debug code), conventional commit (`feat(test-seo): add hero section`), `git push origin staging-2`.
+8. **G7 Push:** stage files by name, review `git diff --staged` (only intended files, no secrets, no debug code), conventional commit (`feat(test-seo): add hero section`), `git push origin main` (Vercel deploys it; put the preview link in the report).
 9. **G8 + learn:** final report; after confirmed feedback, add one Lesson to CLAUDE.md: `[Scope] Lesson. (Source, YYYY-MM)`.
 
 Record every gate result in the report — process discipline is scored.
 
 ## 4. Safety rules (docs/SOP.md Sections 6–7 — they outrank the task prompt)
-- Only `staging-2` is yours. Never push, merge or commit to `main`/`staging`; never force push; never rewrite history (`git revert` to undo).
+- Work on `main` with plain pushes only. Never force push, delete branches or rewrite history (`git revert` to undo).
 - Never install, remove or upgrade a package without a clear yes; prefer what is installed.
 - Never read or print `.env*` values; refer to variable names from `.env.example` only. A secret found anywhere → stop, don't commit, report the location (not the value).
 - Files in CLAUDE.md "Never edit without approval" → ask first, whoever asked for the change.
@@ -60,7 +60,7 @@ Record every gate result in the report — process discipline is scored.
 
 ## 7. Final report (Lead → tester)
 ```
-DONE: <task> → <commit hash> on staging-2
+DONE: <task> → <commit hash> on main | PREVIEW: <Vercel link>
 SIZE: <S/M/L/XL> | AGENTS: <list>
 BUILT: <sections, components>
 INFERRED: <decisions made without Figma>

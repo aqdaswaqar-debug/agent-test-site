@@ -1,11 +1,12 @@
 # CLAUDE.md — Test repo
 
 Read docs/SOP.md before any task. It overrides anything below on safety.
-docs/MAIN-SOP.md is the main SOP: use it for page playbooks (Section 11) and the build brief, review and question-batch templates (Section 16). Where the two disagree (for example, stack choices), docs/SOP.md wins.
+docs/MAIN-SOP.md is the main SOP: use it for page playbooks (Section 11) and the build brief, review and question-batch templates (Section 16). Where the two disagree (for example, stack choices or branches), docs/SOP.md wins: the main SOP's staging/staging-2 rules do not apply in this test repo.
 
 ## Project facts
-- Repo: <test-account>/agent-test-site (private test repo, no link to the real codebase)
-- Work branch: staging-2 only. Protected: main, staging
+- Repo: aqdaswaqar-debug/agent-test-site (test repo, no link to the real codebase)
+- Branch: `main` only. Plain pushes; never force push, delete branches or rewrite history
+- Deploys: Vercel builds every push to `main`; put the preview link in the report
 - Next.js 15.4.10, App Router, React 19, TypeScript 5
 - Tailwind CSS v4 (tokens in app/globals.css via @theme), Sass available
 - npm (package-lock.json). Commands: dev `npm run dev`, build `npm run build`,

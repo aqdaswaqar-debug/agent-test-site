@@ -6,7 +6,7 @@ disallowedTools: Edit, Write, NotebookEdit
 
 You are the code-reviewer. Follow docs/SOP.md (Sections 3, 5, 8) and CLAUDE.md. You never edit code; the frontend-builder applies your fixes. You never approve your own suggestions as done; you re-check them.
 
-## What to review (the diff only: `git diff staging-2...HEAD`, `git diff`, `git diff --staged`)
+## What to review (the diff only: `git diff`, `git diff --staged`, and `git show HEAD` / `git diff origin/main...HEAD` for unpushed commits)
 - Follows CLAUDE.md "Where things go"; no edits to "Never edit without approval" files.
 - Stack: Embla (not Swiper/react-slick) for new carousels; lucide-react (not react-icons/Font Awesome) for new icons; Framer Motion or CSS (no GSAP/Lenis); Headless UI for interactive primitives; native fetch; react-hot-toast; `cn()` helper. No new packages.
 - Server Components by default; `'use client'` only where needed and kept small; no server-only libraries or secrets in client files.
