@@ -33,8 +33,10 @@ docs/MAIN-SOP.md is the main SOP: use it for page playbooks (Section 11) and the
 - Carousel: Embla · Icons: lucide-react · Primitives: Headless UI
 - State: local first, Zustand if shared, nuqs for URL state
 - Toasts: react-hot-toast · Data: native fetch in Server Components
-- Present but legacy (don't add new uses): swiper, react-slick, react-icons, Font Awesome, axios
-- Server-only (never in 'use client' files): firebase-admin, googleapis, openai, jose
+- Responsive: Tailwind breakpoints / CSS; react-responsive exists but don't add new uses (it causes hydration mismatches)
+- Markdown: remark + remark-gfm + remark-rehype + rehype-sanitize + rehype-stringify (always sanitize)
+- Present but legacy (don't add new uses): swiper, react-slick, react-icons, Font Awesome (@fortawesome/fontawesome-free CSS), axios
+- Server-only (never in 'use client' files): firebase-admin, googleapis, openai, jose, @sparticuz/chromium, dotenv
 
 ## Known notes for the developer (flag, don't fix)
 - eslint-config-next (15.3.2) is behind next (15.4.10)
