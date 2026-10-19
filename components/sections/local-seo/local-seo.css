@@ -1,0 +1,43 @@
+/*
+ * Design tokens for the local SEO page template (Figma: "Local SEO Pages").
+ * Scoped to .local-seo so the shared app/globals.css @theme stays untouched.
+ * Proposed for promotion to @theme once approved by the developer.
+ */
+.local-seo {
+  --ls-ink: #222222;
+  --ls-muted: #5b6470;
+  --ls-mint: #14b8a6;
+  --ls-mint-hover: #0f9f90;
+  /* Darker brand teal for small text on light backgrounds (mint text fails WCAG AA at ~2.3:1). */
+  --ls-mint-text: #0f766e;
+  --ls-mint-soft: #eef6f2;
+  --ls-sand: #f4ede5;
+  --ls-cream: #faf7f3;
+  --ls-forest: #16302b;
+  --ls-forest-text: #c9ded8;
+  --ls-forest-accent: #7dd1b8;
+  --ls-forest-label: #b8d4cc;
+  --ls-on-gradient: #d1e9e4;
+  --ls-border: #e6e1da;
+  --ls-border-strong: #b9c3c0;
+  --ls-line: #dbdfd9;
+  --ls-track: #eae3da;
+  --ls-faq: #f7fafc;
+  --ls-field: #dde3e8;
+  --ls-placeholder: #8a939d;
+  --ls-error: #b42318;
+  --ls-gradient: linear-gradient(180deg, #111827 0%, #14b8a6 198%);
+
+  color: var(--ls-ink);
+  background: #ffffff;
+}
+
+/* Decorative map stand-in (Figma: "static map ... to be placed in development"). */
+.local-seo .ls-map-grid {
+  background-color: #dcebe5;
+  background-image:
+    linear-gradient(to bottom, rgb(255 255 255 / 0.7) 2px, transparent 2px),
+    linear-gradient(to right, rgb(255 255 255 / 0.7) 2px, transparent 2px);
+  background-size: 100% 40px, 75px 100%;
+  background-position: 0 30px, 40px 0;
+}
