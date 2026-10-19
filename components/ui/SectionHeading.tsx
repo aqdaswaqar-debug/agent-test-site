@@ -16,6 +16,23 @@ export function Eyebrow({ children, className }: EyebrowProps) {
   );
 }
 
+type SectionTitleProps = { id: string; children: ReactNode; className?: string };
+
+/** The page's standard H2. Carries the id used by aria-labelledby on the section. */
+export function SectionTitle({ id, children, className }: SectionTitleProps) {
+  return (
+    <h2
+      id={id}
+      className={cn(
+        "text-[26px] leading-[1.2] font-semibold text-(--ls-ink) md:text-[32px] lg:text-[40px] lg:leading-[1.18]",
+        className,
+      )}
+    >
+      {children}
+    </h2>
+  );
+}
+
 type SectionHeadingProps = {
   id: string;
   eyebrow: string;
@@ -50,15 +67,9 @@ export function SectionHeading({
     >
       <div className="flex flex-1 flex-col gap-3 lg:gap-4">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h2
-          id={id}
-          className={cn(
-            "text-[26px] leading-[1.2] font-semibold text-(--ls-ink) md:text-[32px] lg:text-[40px] lg:leading-[1.18]",
-            titleClassName,
-          )}
-        >
+        <SectionTitle id={id} className={titleClassName}>
           {title}
-        </h2>
+        </SectionTitle>
       </div>
       {intro ? (
         <p

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
+import { ResponsiveText } from "@/components/ui/ResponsiveText";
 import { cn } from "@/lib/utils";
 import type { Faq } from "./types";
 
@@ -31,7 +32,7 @@ function FaqItem({ item, defaultOpen, hiddenOnMobile }: { item: Faq; defaultOpen
         <>
           <h3 className="text-[14px] leading-[1.45] font-semibold text-(--ls-ink) lg:text-[18px] lg:leading-normal">
             {/* Mobile: accordion trigger. */}
-            <DisclosureButton className="flex w-full items-start gap-3 rounded-[6px] text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--ls-mint) lg:hidden">
+            <DisclosureButton className="flex w-full items-start gap-3 rounded-[6px] text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--ls-mint-text) lg:hidden">
               <span className="flex-1">{item.question}</span>
               <span aria-hidden className="text-[18px] leading-[1.3] font-medium text-(--ls-mint-text)">
                 {open ? "–" : "+"}
@@ -47,8 +48,7 @@ function FaqItem({ item, defaultOpen, hiddenOnMobile }: { item: Faq; defaultOpen
               !open && "hidden",
             )}
           >
-            <span className="lg:hidden">{item.mobileAnswer ?? item.answer}</span>
-            <span className="hidden lg:inline">{item.answer}</span>
+            <ResponsiveText desktop={item.answer} mobile={item.mobileAnswer ?? item.answer} />
           </DisclosurePanel>
         </>
       )}
@@ -63,7 +63,7 @@ export function FaqSection({ title, intro, items }: FaqSectionProps) {
   return (
     <section id="faqs" aria-labelledby="faqs-title" className="scroll-mt-4 bg-white">
       <div className="mx-auto w-full max-w-[1440px] lg:px-10 xl:px-0">
-        <div className="flex flex-col items-center gap-[18px] px-6 py-11 lg:gap-6 lg:rounded-[24px] lg:border lg:border-[#e2e8f0] lg:px-10 lg:py-24 xl:px-[120px]">
+        <div className="flex flex-col items-center gap-4 px-6 py-11 lg:gap-6 lg:rounded-[24px] lg:border lg:border-(--ls-divider) lg:px-10 lg:py-24 xl:px-[120px]">
           <div className="flex w-full flex-col gap-2 lg:items-center lg:text-center">
             <h2 id="faqs-title" className="text-[26px] leading-[1.2] font-semibold text-(--ls-ink) lg:text-[36px] lg:leading-normal">
               {title}

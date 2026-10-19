@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Chip } from "@/components/ui/Chip";
 import { Container } from "@/components/ui/Container";
+import { ResponsiveText } from "@/components/ui/ResponsiveText";
 import type { Clinic, LocalSeoPage } from "./types";
 
 type HeroSectionProps = { hero: LocalSeoPage["hero"]; clinic: Clinic };
@@ -9,9 +10,9 @@ type HeroSectionProps = { hero: LocalSeoPage["hero"]; clinic: Clinic };
 export function HeroSection({ hero, clinic }: HeroSectionProps) {
   return (
     <section aria-labelledby="hero-title" className="bg-(--ls-sand)">
-      <Container className="grid gap-[18px] pt-8 pb-11 lg:grid-cols-[minmax(0,1fr)_520px] lg:grid-rows-[auto_auto] lg:content-center lg:gap-x-16 lg:gap-y-7 lg:pt-[72px] lg:pb-[88px] xl:gap-x-16">
+      <Container className="grid gap-4 pt-8 pb-11 lg:grid-cols-[minmax(0,1fr)_520px] lg:grid-rows-[auto_auto] lg:content-center lg:gap-x-16 lg:gap-y-7 lg:pt-[72px] lg:pb-[88px] xl:gap-x-16">
         {/* Copy (row 1 on desktop) */}
-        <div className="flex flex-col gap-[18px] lg:self-end lg:gap-7">
+        <div className="flex flex-col gap-4 lg:self-end lg:gap-7">
           <p className="flex items-center gap-2 text-[12px] leading-[1.6] font-medium text-(--ls-ink) lg:gap-2.5 lg:text-[14px] lg:leading-[1.65]">
             <span aria-hidden className="size-[7px] rounded-full bg-(--ls-mint) lg:size-2" />
             {hero.tag}
@@ -20,8 +21,7 @@ export function HeroSection({ hero, clinic }: HeroSectionProps) {
             {hero.title}
           </h1>
           <p className="text-[15px] leading-[1.6] text-(--ls-muted) lg:text-[18px] lg:leading-[1.65]">
-            <span className="lg:hidden">{hero.mobileIntro}</span>
-            <span className="hidden lg:inline">{hero.intro}</span>
+            <ResponsiveText desktop={hero.intro} mobile={hero.mobileIntro} />
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export function HeroSection({ hero, clinic }: HeroSectionProps) {
         </div>
 
         {/* Actions + chips (row 2 on desktop) */}
-        <div className="flex flex-col gap-[18px] lg:self-start lg:gap-7">
+        <div className="flex flex-col gap-4 lg:self-start lg:gap-7">
           <div className="flex flex-col gap-2.5 sm:flex-row lg:gap-3">
             <ButtonLink href="#book-form" className="w-full px-5 py-3.5 sm:w-auto lg:px-7 lg:py-4">
               Book Free Consultation
@@ -56,8 +56,7 @@ export function HeroSection({ hero, clinic }: HeroSectionProps) {
             {hero.chips.map((chip, i) => (
               <li key={chip}>
                 <Chip className="bg-white">
-                  <span className="lg:hidden">{hero.mobileChips[i] ?? chip}</span>
-                  <span className="hidden lg:inline">{chip}</span>
+                  <ResponsiveText desktop={chip} mobile={hero.mobileChips[i] ?? chip} />
                 </Chip>
               </li>
             ))}

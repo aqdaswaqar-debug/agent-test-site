@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { Eyebrow } from "@/components/ui/SectionHeading";
+import { Eyebrow, SectionTitle } from "@/components/ui/SectionHeading";
 import { ClinicCarousel } from "./ClinicCarousel";
 import type { LocalSeoPage } from "./types";
 
@@ -16,9 +16,9 @@ export function ClinicPhotosSection({ data }: Props) {
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-10">
           <div className="flex flex-col gap-3 lg:gap-4">
             <Eyebrow>{data.eyebrow}</Eyebrow>
-            <h2 id="photos-title" className="text-[26px] leading-[1.2] font-semibold text-(--ls-ink) md:text-[32px] lg:text-[40px] lg:leading-[1.18]">
+            <SectionTitle id="photos-title">
               {data.title}
-            </h2>
+            </SectionTitle>
           </div>
           <ButtonLink href="#book-form" className="hidden shrink-0 md:inline-flex">
             {data.cta}

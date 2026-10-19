@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { ResponsiveText } from "@/components/ui/ResponsiveText";
-import { Eyebrow } from "@/components/ui/SectionHeading";
+import { Eyebrow, SectionTitle } from "@/components/ui/SectionHeading";
 import type { LocalSeoPage } from "./types";
 
 type Props = { data: LocalSeoPage["results"] };
@@ -11,12 +11,12 @@ const PROGRESS_WIDTH: Record<number, string> = { 33: "w-1/3", 66: "w-2/3", 100: 
 export function ResultsSection({ data }: Props) {
   return (
     <section id="results" aria-labelledby="results-title" className="scroll-mt-4 bg-(--ls-sand) py-11 lg:py-28">
-      <Container className="flex flex-col gap-[18px] lg:flex-row lg:items-start lg:gap-24">
+      <Container className="flex flex-col gap-4 lg:flex-row lg:items-start lg:gap-24">
         <div className="flex flex-col gap-3 lg:w-[400px] lg:shrink-0 lg:gap-5">
           <Eyebrow>{data.eyebrow}</Eyebrow>
-          <h2 id="results-title" className="text-[26px] leading-[1.2] font-semibold text-(--ls-ink) md:text-[32px] lg:text-[40px] lg:leading-[1.18]">
+          <SectionTitle id="results-title">
             {data.title}
-          </h2>
+          </SectionTitle>
           <p className="hidden text-[16px] leading-[1.65] text-(--ls-muted) lg:block">{data.intro}</p>
           <p className="hidden text-[13px] leading-[1.65] text-(--ls-muted) lg:block">{data.note}</p>
         </div>

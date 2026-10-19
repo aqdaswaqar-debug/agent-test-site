@@ -1,3 +1,5 @@
+import type { BookableClinic } from "@/lib/lead";
+
 /** Content model for one local SEO page (Figma "Local SEO Pages", P01–P25 share this template). */
 
 export type ImageAsset = { src: string; alt: string; width: number; height: number };
@@ -22,6 +24,8 @@ export type Clinic = {
   nearestMetro: string;
   metroShort: string;
   mapsUrl: string;
+  /** Clinic value the lead form books (must be in BOOKABLE_CLINICS). */
+  bookingName: BookableClinic;
 };
 
 export type Treatment = { name: string; summary: string; mobileSummary: string; image: ImageAsset };

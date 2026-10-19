@@ -10,7 +10,7 @@ type Props = { data: LocalSeoPage["why"] };
 export function WhySection({ data }: Props) {
   return (
     <section aria-labelledby="why-title" className="bg-white py-11 lg:py-28">
-      <Container className="flex flex-col gap-[18px] lg:gap-14">
+      <Container className="flex flex-col gap-4 lg:gap-14">
         <SectionHeading id="why-title" eyebrow={data.eyebrow} title={data.title} intro={data.intro} introOnMobile={false} />
         <Reveal>
           {/* Mobile: 2-col cream tiles. Desktop: one bordered 3×2 grid (Figma). */}

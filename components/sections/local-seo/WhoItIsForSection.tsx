@@ -9,7 +9,7 @@ type Props = { data: LocalSeoPage["whoItIsFor"] };
 export function WhoItIsForSection({ data }: Props) {
   return (
     <section id="who-it-is-for" aria-labelledby="who-title" className="scroll-mt-4 bg-white py-11 lg:py-28">
-      <Container className="flex flex-col gap-[18px] lg:gap-14">
+      <Container className="flex flex-col gap-4 lg:gap-14">
         <SectionHeading id="who-title" eyebrow={data.eyebrow} title={data.title} intro={data.intro} introOnMobile={false} />
         <Reveal>
           {/* Mobile: one list card with dividers. Tablet: 2×2. Desktop: four cards. */}

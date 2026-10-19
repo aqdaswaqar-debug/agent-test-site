@@ -56,8 +56,8 @@ export function ClinicCarousel({ photos, label }: ClinicCarouselProps) {
           >
             <span
               className={cn(
-                "block h-1.5 rounded-[3px] transition-[width,background-color] duration-200 motion-reduce:transition-none",
-                i === selected ? "w-5 bg-(--ls-mint)" : "w-1.5 bg-[#b9cfc8]",
+                "block h-1.5 w-5 origin-center rounded-[3px] transition-[scale,background-color] duration-200 motion-reduce:transition-none",
+                i === selected ? "scale-x-100 bg-(--ls-mint)" : "scale-x-[0.3] bg-(--ls-dot)",
               )}
             />
           </button>

@@ -23,6 +23,7 @@ export const centralDelhi: LocalSeoPage = {
     shortAddress: "12 Central Lane, near Lalit Hotel, New Delhi 110001",
     phoneDisplay: "+91 99996 66699",
     phoneTel: "+919999666699",
+    bookingName: "Berkowits Bengali Market, Delhi",
     email: "inquiry@berkowits.in",
     hoursDisplay: "10:00 AM – 7:00 PM",
     opens: "10:00",

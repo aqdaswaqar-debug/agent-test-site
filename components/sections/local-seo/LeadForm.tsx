@@ -3,25 +3,24 @@
 import { useId, useState, type FormEvent } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { ArrowRight } from "lucide-react";
-import { BOOKABLE_CLINICS, LEAD_LIMITS, validateLead, type LeadErrors, type LeadField } from "@/lib/lead";
+import { LEAD_LIMITS, validateLead, type BookableClinic, type LeadErrors, type LeadField } from "@/lib/lead";
 import { cn } from "@/lib/utils";
 
-type LeadFormProps = { hours: string };
+type LeadFormProps = { hours: string; clinic: BookableClinic };
 
 const initial = { name: "", phone: "", concern: "", website: "" };
 
 const labelClass = "text-[11px] leading-[1.6] font-semibold tracking-[0.04em] text-(--ls-ink) uppercase lg:text-[12px]";
 const fieldClass =
   "w-full rounded-[10px] border border-(--ls-field) bg-white px-3.5 py-3 text-[13px] leading-[1.6] text-(--ls-ink) placeholder:text-(--ls-placeholder) " +
-  "transition-colors duration-150 focus:border-(--ls-mint) focus:outline-2 focus:outline-offset-0 focus:outline-(--ls-mint) lg:rounded-[12px] lg:px-4 lg:text-[14px] " +
+  "transition-colors duration-150 focus:border-(--ls-mint-text) focus:outline-2 focus:outline-offset-0 focus:outline-(--ls-mint-text) lg:rounded-[12px] lg:px-4 lg:text-[14px] " +
   "aria-[invalid=true]:border-(--ls-error)";
 
-export function LeadForm({ hours }: LeadFormProps) {
+export function LeadForm({ hours, clinic }: LeadFormProps) {
   const id = useId();
   const [values, setValues] = useState(initial);
   const [errors, setErrors] = useState<LeadErrors>({});
   const [submitting, setSubmitting] = useState(false);
-  const clinic = BOOKABLE_CLINICS[0];
 
   const update = (field: keyof typeof initial, value: string) => {
     setValues((v) => ({ ...v, [field]: value }));
@@ -66,7 +65,7 @@ export function LeadForm({ hours }: LeadFormProps) {
   }
 
   return (
-    <div className="w-full rounded-[18px] bg-white px-5 py-[22px] lg:w-[460px] lg:shrink-0 xl:w-[560px] lg:rounded-[24px] lg:p-8 lg:shadow-[0_25px_25px_rgba(0,0,0,0.25)]">
+    <div className="w-full rounded-[18px] bg-white px-5 py-6 lg:w-[460px] lg:shrink-0 xl:w-[560px] lg:rounded-[24px] lg:p-8 lg:shadow-[0_25px_25px_rgba(0,0,0,0.25)]">
       <Toaster position="top-center" toastOptions={{ duration: 5000, style: { fontSize: "14px" } }} />
       <h3 className="text-[20px] leading-[1.6] font-semibold text-(--ls-ink) lg:text-[24px] lg:leading-[32px]">
         Book Free Consultation

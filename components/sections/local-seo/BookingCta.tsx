@@ -31,7 +31,7 @@ export function BookingCta({ booking, clinic }: BookingCtaProps) {
           </div>
         </div>
         <div id="book-form" className="w-full scroll-mt-4 lg:w-auto">
-          <LeadForm hours={clinic.hoursDisplay} />
+          <LeadForm hours={clinic.hoursDisplay} clinic={clinic.bookingName} />
         </div>
       </div>
     </section>

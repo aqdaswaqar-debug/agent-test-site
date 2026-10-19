@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
+import { ResponsiveText } from "@/components/ui/ResponsiveText";
 import { Reveal } from "@/components/ui/Reveal";
-import { Eyebrow } from "@/components/ui/SectionHeading";
+import { Eyebrow, SectionTitle } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
 import type { LocalSeoPage, Treatment } from "./types";
 
@@ -11,7 +12,7 @@ type Grow = LocalSeoPage["treatments"]["grow"];
 
 function TreatmentCard({ item }: { item: Treatment }) {
   return (
-    <li className="group flex items-center gap-3.5 border-b border-(--ls-border) py-3 pr-4 pl-3 last:border-b-0 md:flex-col md:items-stretch md:gap-0 md:overflow-hidden md:rounded-[18px] md:border-b-0 md:bg-white md:p-0 md:transition-[transform,box-shadow] md:duration-200 md:ease-out motion-reduce:transition-none md:[@media(hover:hover)]:hover:-translate-y-1 md:[@media(hover:hover)]:hover:shadow-[0_12px_28px_rgba(22,48,43,0.10)]">
+    <li className="group flex items-center gap-3.5 border-b border-(--ls-border) py-3 pr-4 pl-3 last:border-b-0 md:flex-col md:items-stretch md:gap-0 md:overflow-hidden md:rounded-[18px] md:border-b-0 md:bg-white md:p-0 md:relative md:transition-transform md:duration-200 md:ease-out motion-reduce:transition-none md:[@media(hover:hover)]:hover:-translate-y-1 after:pointer-events-none after:absolute after:inset-0 after:rounded-[18px] after:opacity-0 after:shadow-[0_12px_28px_rgba(22,48,43,0.10)] after:transition-opacity after:duration-200 motion-reduce:after:transition-none md:[@media(hover:hover)]:hover:after:opacity-100">
       <div className="relative size-[76px] shrink-0 overflow-hidden rounded-[12px] md:h-[210px] md:w-full md:rounded-none">
         <Image
           src={item.image.src}
@@ -24,8 +25,7 @@ function TreatmentCard({ item }: { item: Treatment }) {
       <div className="flex flex-1 flex-col gap-0.5 md:gap-2 md:px-6 md:pt-5 md:pb-6">
         <h4 className="text-[15px] leading-[1.35] font-medium text-(--ls-ink) lg:text-[19px]">{item.name}</h4>
         <p className="text-[12px] leading-[1.5] text-(--ls-muted) lg:text-[14px] lg:leading-[1.65]">
-          <span className="md:hidden">{item.mobileSummary}</span>
-          <span className="hidden md:inline">{item.summary}</span>
+          <ResponsiveText desktop={item.summary} mobile={item.mobileSummary} breakpoint="md" />
         </p>
       </div>
     </li>
@@ -43,8 +43,7 @@ function GrowPanel({ grow, className }: { grow: Grow; className?: string }) {
       </p>
       <p className="text-[18px] leading-[1.3] font-medium text-white lg:text-[22px]">{grow.title}</p>
       <p className="text-[13px] leading-[1.55] text-(--ls-forest-text) lg:text-[14px] lg:leading-[1.65]">
-        <span className="lg:hidden">{grow.mobileBody}</span>
-        <span className="hidden lg:inline">{grow.body}</span>
+        <ResponsiveText desktop={grow.body} mobile={grow.mobileBody} />
       </p>
       <ButtonLink href={grow.href} target="_blank" variant="inverse" size="sm" className="w-full lg:w-auto lg:self-start">
         {grow.cta}
@@ -61,14 +60,12 @@ export function TreatmentsSection({ data }: Props) {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:gap-20">
           <div className="flex flex-1 flex-col gap-3 lg:gap-4">
             <Eyebrow>{data.eyebrow}</Eyebrow>
-            <h2 id="treatments-title" className="text-[26px] leading-[1.2] font-semibold text-(--ls-ink) md:text-[32px] lg:text-[40px] lg:leading-[1.18]">
-              <span className="lg:hidden">{data.mobileTitle}</span>
-              <span className="hidden lg:inline">{data.title}</span>
-            </h2>
+            <SectionTitle id="treatments-title">
+              <ResponsiveText desktop={data.title} mobile={data.mobileTitle} />
+            </SectionTitle>
           </div>
           <p className="text-[14px] leading-[1.55] text-(--ls-muted) lg:w-[500px] lg:shrink-0 lg:text-[16px] lg:leading-[1.65]">
-            <span className="lg:hidden">{data.mobileIntro}</span>
-            <span className="hidden lg:inline">{data.intro}</span>
+            <ResponsiveText desktop={data.intro} mobile={data.mobileIntro} />
           </p>
         </div>
 
@@ -96,8 +93,7 @@ export function TreatmentsSection({ data }: Props) {
         ))}
 
         <p className="text-[11px] leading-[1.55] text-(--ls-muted) lg:text-[13px] lg:leading-[1.65]">
-          <span className="lg:hidden">{data.mobileFootnote}</span>
-          <span className="hidden lg:inline">{data.footnote}</span>
+          <ResponsiveText desktop={data.footnote} mobile={data.mobileFootnote} />
         </p>
         <GrowPanel grow={data.grow} className="md:hidden" />
       </Container>

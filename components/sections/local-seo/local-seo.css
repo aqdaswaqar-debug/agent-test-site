@@ -26,6 +26,8 @@
   --ls-field: #dde3e8;
   --ls-placeholder: #8a939d;
   --ls-error: #b42318;
+  --ls-divider: #e2e8f0;
+  --ls-dot: #6f8c84; /* inactive carousel dot, >= 3:1 on mint-soft and white */
   --ls-gradient: linear-gradient(180deg, #111827 0%, #14b8a6 198%);
 
   color: var(--ls-ink);

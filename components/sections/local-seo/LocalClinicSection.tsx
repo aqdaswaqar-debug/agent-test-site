@@ -1,8 +1,9 @@
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Chip } from "@/components/ui/Chip";
 import { Container } from "@/components/ui/Container";
+import { ResponsiveText } from "@/components/ui/ResponsiveText";
 import { Reveal } from "@/components/ui/Reveal";
-import { Eyebrow } from "@/components/ui/SectionHeading";
+import { Eyebrow, SectionTitle } from "@/components/ui/SectionHeading";
 import type { Clinic, LocalSeoPage } from "./types";
 
 type Props = { data: LocalSeoPage["local"]; clinic: Clinic };
@@ -31,12 +32,12 @@ export function LocalClinicSection({ data, clinic }: Props) {
 
   return (
     <section id="clinic" aria-labelledby="local-title" className="scroll-mt-4 bg-(--ls-cream) py-11 lg:bg-white lg:py-28">
-      <Container className="flex flex-col gap-[18px] lg:flex-row lg:items-start lg:gap-[72px]">
-        <div className="flex flex-1 flex-col gap-[18px] lg:gap-6">
+      <Container className="flex flex-col gap-4 lg:flex-row lg:items-start lg:gap-[72px]">
+        <div className="flex flex-1 flex-col gap-4 lg:gap-6">
           <Eyebrow>{data.eyebrow}</Eyebrow>
-          <h2 id="local-title" className="text-[26px] leading-[1.2] font-semibold text-(--ls-ink) md:text-[32px] lg:text-[40px] lg:leading-[1.18]">
+          <SectionTitle id="local-title">
             {data.title}
-          </h2>
+          </SectionTitle>
           <p className="text-[14px] leading-[1.65] text-(--ls-muted) lg:hidden">{data.mobileParagraph}</p>
           {data.paragraphs.map((p) => (
             <p key={p.slice(0, 24)} className="hidden text-[16px] leading-[1.65] text-(--ls-muted) lg:block">
@@ -56,7 +57,7 @@ export function LocalClinicSection({ data, clinic }: Props) {
         <Reveal className="w-full lg:w-[520px] lg:shrink-0">
           <div className="overflow-hidden rounded-[16px] bg-white lg:rounded-[20px] lg:bg-(--ls-cream)">
             <MapPlaceholder />
-            <div className="flex flex-col gap-3 px-[18px] py-5 lg:gap-3.5 lg:px-8 lg:pt-7 lg:pb-8">
+            <div className="flex flex-col gap-3 px-4 py-5 lg:gap-3.5 lg:px-8 lg:pt-7 lg:pb-8">
               <h3 className="text-[17px] leading-[1.5] font-semibold text-(--ls-ink) lg:text-[22px] lg:leading-[1.65] lg:font-medium">
                 {clinic.name}
               </h3>
@@ -94,8 +95,7 @@ export function LocalClinicSection({ data, clinic }: Props) {
                   Get Directions
                 </ButtonLink>
                 <ButtonLink href={`tel:${clinic.phoneTel}`} variant="secondary" className="px-4 py-3.5 lg:px-7 lg:py-4">
-                  <span className="lg:hidden">Call</span>
-                  <span className="hidden lg:inline">Call Clinic</span>
+                  <ResponsiveText desktop="Call Clinic" mobile="Call" />
                 </ButtonLink>
               </div>
             </div>

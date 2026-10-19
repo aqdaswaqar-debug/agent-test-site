@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { ResponsiveText } from "@/components/ui/ResponsiveText";
-import { Eyebrow } from "@/components/ui/SectionHeading";
+import { Eyebrow, SectionTitle } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
 import type { LocalSeoPage } from "./types";
 
@@ -10,12 +10,12 @@ type Props = { data: LocalSeoPage["process"] };
 export function ProcessSection({ data }: Props) {
   return (
     <section id="your-visit" aria-labelledby="visit-title" className="scroll-mt-4 bg-white py-11 lg:py-28">
-      <Container className="flex flex-col gap-[18px] lg:gap-10">
+      <Container className="flex flex-col gap-4 lg:gap-10">
         <div className="flex flex-col gap-3 lg:gap-4">
           <Eyebrow>{data.eyebrow}</Eyebrow>
-          <h2 id="visit-title" className="text-[26px] leading-[1.2] font-semibold text-(--ls-ink) md:text-[32px] lg:max-w-[720px] lg:text-[40px] lg:leading-[1.18]">
+          <SectionTitle id="visit-title" className="lg:max-w-[720px]">
             <ResponsiveText desktop={data.title} mobile={data.mobileTitle} />
-          </h2>
+          </SectionTitle>
         </div>
 
         <Reveal>
