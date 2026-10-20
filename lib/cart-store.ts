@@ -30,6 +30,28 @@ type CartState = {
 
 export const MAX_QUANTITY = 10;
 
+function sanitizeItems(raw: unknown): CartItem[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter(
+      (i): i is CartItem =>
+        typeof i === "object" &&
+        i !== null &&
+        typeof i.id === "string" &&
+        typeof i.name === "string" &&
+        (i.variant === undefined || typeof i.variant === "string") &&
+        typeof i.price === "number" &&
+        Number.isFinite(i.price) &&
+        i.price >= 0 &&
+        typeof i.image === "string" &&
+        i.image.startsWith("/") &&
+        Number.isInteger(i.quantity) &&
+        i.quantity >= 1 &&
+        i.quantity <= MAX_QUANTITY,
+    )
+    .slice(0, 50);
+}
+
 const clamp = (n: number) => Math.max(1, Math.min(MAX_QUANTITY, Math.round(n)));
 
 export const useCart = create<CartState>()(
@@ -54,6 +76,8 @@ export const useCart = create<CartState>()(
       name: "berkowits-test-cart",
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ items: state.items }),
+      // Only trust well-formed items from storage (it is user-editable).
+      merge: (persisted, current) => ({ ...current, items: sanitizeItems((persisted as { items?: unknown } | undefined)?.items) }),
       // Read storage after hydration so server and first client render match (empty cart).
       skipHydration: true,
     },

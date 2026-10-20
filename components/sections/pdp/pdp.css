@@ -1,0 +1,49 @@
+/*
+ * Design tokens for the Berkowits PDP template (Figma "Berkowits 2 New Page Design").
+ * Scoped to .pdp so app/globals.css @theme stays untouched; proposed for @theme once approved.
+ * Figma variables: Radiate Dark Color #cd6111, Radiate Color #fbc09433, Body text Color #4a5565, CTA 100 #14b8a6.
+ */
+.pdp {
+  --pdp-accent: #cd6111; /* Figma brand orange: borders, icons, bars, large accents */
+  /* #cd6111 is 3.95:1 on white, below AA for small text; this deeper orange (5:1) is used for text and filled buttons. */
+  --pdp-accent-strong: #b4530c;
+  --pdp-accent-hover: #9a4609;
+  --pdp-peach: #fbc094;
+  --pdp-tint: rgb(251 192 148 / 0.2);
+  --pdp-tint-soft: rgb(251 192 148 / 0.08);
+  --pdp-blush: #fdf0eb;
+  --pdp-cream: #faf6f2;
+  --pdp-ivory: #faf9f6;
+  --pdp-dawn: #fff7f4;
+  --pdp-ink: #1c1c1c;
+  --pdp-body: #555555;
+  --pdp-meta: #57534d;
+  /* #999 / #a6a09b in Figma fail contrast; these keep the look at ≥ 4.5:1 on the cream backgrounds. */
+  --pdp-subtle: #6f6a64;
+  --pdp-strike: #736d66;
+  --pdp-line: #eae5e0;
+  --pdp-line-strong: #d6d3d1;
+  --pdp-footer: #1a1a2e;
+  --pdp-teal: #14b8a6;
+  --pdp-teal-text: #2dd4bf;
+  --pdp-teal-soft: rgb(20 184 166 / 0.2);
+  --pdp-closing-cream: #f5f1e9;
+  --pdp-success: #15803d;
+  --pdp-error: #b42318;
+
+  color: var(--pdp-ink);
+  background: #ffffff;
+}
+
+/* Hide the native scrollbar on horizontal snap rows (they stay scrollable by touch, wheel and keyboard). */
+.pdp .pdp-scroll-x {
+  scrollbar-width: none;
+}
+.pdp .pdp-scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fixed sticky bar must never cover the end of the page. */
+.pdp .pdp-safe-bottom {
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
