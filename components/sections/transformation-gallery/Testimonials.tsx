@@ -35,7 +35,7 @@ export function Testimonials({ reviews, title = "Testimonials", startIndex = 0 }
         >
           <ul className="flex">
             {reviews.map((r, i) => (
-              <li key={r.name} role="group" aria-label={`Review ${i + 1} of ${reviews.length}`} className="min-w-0 flex-[0_0_86%] pl-4 sm:flex-[0_0_55%] lg:flex-[0_0_33.333%] lg:pl-10">
+              <li key={r.name} className="min-w-0 flex-[0_0_86%] pl-4 sm:flex-[0_0_55%] lg:flex-[0_0_33.333%] lg:pl-10">
                 <article
                   className={cn(
                     "relative flex h-full flex-col gap-4 rounded-[20px] border-2 border-(--tg-line) bg-white p-5 lg:gap-5 lg:p-8",

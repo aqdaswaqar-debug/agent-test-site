@@ -59,9 +59,6 @@ export function JourneyCarousel({ phases }: { phases: Phase[] }) {
               <li
                 key={p.n}
                 data-reveal-item
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`Phase ${p.n} of ${phases.length}`}
                 className="min-w-0 flex-[0_0_min(352px,86%)] pl-6 md:flex-[0_0_50%] lg:flex-[0_0_33.333%] lg:pl-[clamp(32px,4vw,70px)]"
               >
                 {/* Top/left padding leaves room for the number badge that overhangs the card corner. */}

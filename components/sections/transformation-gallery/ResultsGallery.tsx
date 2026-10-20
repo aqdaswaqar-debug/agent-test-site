@@ -26,7 +26,7 @@ export function ResultsGallery({ pairs, label }: ResultsGalleryProps) {
         <div ref={viewportRef} className="-mx-4 overflow-hidden px-4 md:mx-0 md:overflow-visible md:px-0" role="region" aria-roledescription="carousel" aria-label={`${label} results`}>
           <ul className={cn("flex gap-6 md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-x-16", pairs.length < 3 && "lg:flex lg:justify-center", pairs.length === 1 && "justify-center")}>
             {pairs.map((p, i) => (
-              <li key={p.before} data-reveal-item role="group" aria-label={`${i + 1} of ${pairs.length}`} className="min-w-0 flex-[0_0_84%] sm:flex-[0_0_60%] md:flex-none lg:w-full lg:max-w-[427px]">
+              <li key={p.before} data-reveal-item className="min-w-0 flex-[0_0_84%] sm:flex-[0_0_60%] md:flex-none lg:w-full lg:max-w-[427px]">
                 <BeforeAfterCard pair={p} caption={caption(i)} />
               </li>
             ))}
