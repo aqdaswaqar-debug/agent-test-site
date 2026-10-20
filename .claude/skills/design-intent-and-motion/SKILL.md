@@ -34,6 +34,7 @@ Go section by section and ask: *"On a real website, how does this behave?"* Use 
 | Hero photo | First impression | `.ui-settle` slow zoom-in on load (no opacity, so LCP is not delayed) + hover lift/zoom. |
 | Play icon on an image | Video | Lightbox or inline video, poster, `muted playsInline`, lazy. |
 | Reviews/ratings | Real reviews only | Show only real data or flag; never invent testimonials. |
+| Product cards (bundle, cross-sell, "you may also like") with stock or stand-in photos | Real catalogue products | Open each product's live page (berkowits.com) and use its first PDP photo, live name, size, price, rating and stock; link the card to that page; define each product once and reuse it. |
 | Address, phone, prices, doctor names | Business facts | Use as given but verify they look real; sample-looking data → `TODO(content)` + gate question. |
 | Form | Working form | Validation, error/loading/success states, honeypot/rate limit, toast, mock API. |
 
