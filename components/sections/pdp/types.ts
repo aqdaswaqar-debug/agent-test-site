@@ -21,6 +21,8 @@ export type Product = {
   descriptor: string;
   price: number;
   image: Media;
+  /** Live star rating from the product's berkowits.com page. */
+  rating?: number;
   /** false = shown but can't be added (live stock). Defaults to in stock. */
   inStock?: boolean;
 };

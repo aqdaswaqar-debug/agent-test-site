@@ -16,6 +16,38 @@ const video = (name: string, label: string) => ({ src: `${VID}/${name}.mp4`, pos
 /** Live price of one 30 ml bottle (berkowits.com, 1 Month Pack). Pack savings are computed against it. */
 const UNIT_PRICE = 1211;
 
+/**
+ * Companion products as listed on berkowits.com (name, price, rating, stock and first PDP photo, 20 Oct 2026).
+ * Shared by the bundle and "You may also like" so both always show the same real product.
+ */
+const LIVE = {
+  facewash: {
+    id: "radiate-facewash",
+    slug: "radiate-skin-brightening-facewash-with-niacinamide-and-shea-butter-for-glowing-and-younger-skin-100gm/7540889747546",
+    name: "Radiate Skin Brightening Facewash",
+    price: 499,
+    rating: 4.8,
+    inStock: false, // berkowits.com shows it out of stock
+    image: { src: "/images/pdp/products/radiate-facewash.webp", alt: "Berkowits Radiate Skin Brightening Facewash tube with its carton", width: 900, height: 900 },
+  },
+  sunscreen: {
+    id: "protect-spf50",
+    slug: "protect-sunscreen-gel-for-all-skin-types-spf-50-pa-60gm/7540884668506",
+    name: "Protect Sunscreen Gel SPF 50 PA+++",
+    price: 890,
+    rating: 4.8,
+    image: { src: "/images/pdp/products/protect-spf50.webp", alt: "Berkowits Protect Sunscreen Gel SPF 50 tube with its carton", width: 900, height: 900 },
+  },
+  brighteningSerum: {
+    id: "radiate-brightening-serum",
+    slug: "radiate-skin-brightening-face-serum-for-glowing-skin-30ml/7540889649242",
+    name: "Radiate Skin Brightening Face Serum",
+    price: 1625,
+    rating: 4.9,
+    image: { src: "/images/pdp/products/radiate-skin-brightening-serum.webp", alt: "Berkowits Radiate Skin Brightening Face Serum bottle with oranges", width: 900, height: 900 },
+  },
+} as const;
+
 export const radiateVitaminC: PdpContent = {
   product: {
     id: "radiate-vitamin-c-serum",
@@ -272,16 +304,7 @@ export const radiateVitaminC: PdpContent = {
     mobileIntro: "Bundle the formulas that work best with your serum.",
     cta: "Build your routine",
     items: [
-      {
-        id: "radiate-facewash",
-        step: "Step 01: Cleanse",
-        slug: "radiate-skin-brightening-facewash-with-niacinamide-and-shea-butter-for-glowing-and-younger-skin-100gm/7540889747546",
-        name: "Radiate Skin Brightening Facewash",
-        descriptor: "Cleanse + Prep (100 g)",
-        price: 499,
-        inStock: false, // berkowits.com shows it out of stock (20 Oct 2026)
-        image: { src: "/images/pdp/products/radiate-cleanser.webp", alt: "Radiate facewash pump bottle", width: 900, height: 514 },
-      },
+      { ...LIVE.facewash, step: "Step 01: Cleanse", descriptor: "With Niacinamide & Shea Butter (100 g)" },
       {
         id: "radiate-vitamin-c-serum",
         step: "Step 02: Treat",
@@ -289,17 +312,10 @@ export const radiateVitaminC: PdpContent = {
         name: "Radiate Vitamin C Serum",
         descriptor: "Brighten + Radiance (30 ml)",
         price: UNIT_PRICE,
+        rating: 4.9,
         image: { src: `${IMG}/product-1.webp`, alt: "Radiate Vitamin C Serum bottle", width: 1080, height: 1080 },
       },
-      {
-        id: "protect-spf50",
-        step: "Step 03: Defend",
-        slug: "protect-sunscreen-gel-for-all-skin-types-spf-50-pa-60gm/7540884668506",
-        name: "Protect Sunscreen Gel SPF 50",
-        descriptor: "Daily UV Protection (60 g)",
-        price: 890,
-        image: { src: "/images/pdp/products/protect-spf50.webp", alt: "Protect Sunscreen SPF 50 tube", width: 900, height: 514 },
-      },
+      { ...LIVE.sunscreen, step: "Step 03: Defend", descriptor: "No white cast, non-greasy (60 g)" },
     ],
   },
 
@@ -321,31 +337,9 @@ export const radiateVitaminC: PdpContent = {
     eyebrow: "Discover more",
     title: "You May Also Like",
     items: [
-      {
-        id: "radiate-brightening-serum",
-        slug: "radiate-skin-brightening-face-serum-for-glowing-skin-30ml/7540889649242",
-        name: "Radiate Skin Brightening Serum",
-        descriptor: "For pigmentation + uneven tone",
-        price: 1625,
-        image: { src: "/images/pdp/products/radiate-skin-brightening-serum.webp", alt: "Radiate Skin Brightening Serum bottle", width: 800, height: 800 },
-      },
-      {
-        id: "protect-spf50",
-        slug: "protect-sunscreen-gel-for-all-skin-types-spf-50-pa-60gm/7540884668506",
-        name: "Protect Sunscreen Gel SPF 50",
-        descriptor: "For daily UV protection",
-        price: 890,
-        image: { src: "/images/pdp/products/protect-spf50.webp", alt: "Protect Sunscreen SPF 50 tube", width: 900, height: 514 },
-      },
-      {
-        id: "radiate-facewash",
-        slug: "radiate-skin-brightening-facewash-with-niacinamide-and-shea-butter-for-glowing-and-younger-skin-100gm/7540889747546",
-        name: "Radiate Skin Brightening Facewash",
-        descriptor: "For cleansing + routine prep",
-        price: 499,
-        inStock: false,
-        image: { src: "/images/pdp/products/radiate-cleanser.webp", alt: "Radiate facewash pump bottle", width: 900, height: 514 },
-      },
+      { ...LIVE.brighteningSerum, descriptor: "For pigmentation + uneven tone (30 ml)" },
+      { ...LIVE.sunscreen, descriptor: "For daily UV protection (60 g)" },
+      { ...LIVE.facewash, descriptor: "For cleansing + routine prep (100 g)" },
     ],
   },
 

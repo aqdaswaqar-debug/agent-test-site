@@ -7,7 +7,7 @@ import { Check, Plus } from "lucide-react";
 import { formatINR } from "@/lib/cart-store";
 import { hoverLift, hoverZoom } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
-import { Dots, useAddToCart, useEmblaDots } from "./controls";
+import { Dots, Stars, useAddToCart, useEmblaDots } from "./controls";
 import { productUrl } from "./site-links";
 import { PdpContainer, SectionHeader } from "./PdpSection";
 import type { PdpContent, Product } from "./types";
@@ -62,7 +62,7 @@ export function RecommendationsSection({ data }: { data: PdpContent["recommendat
               {data.items.map((p) => (
                 <li key={p.id} className="min-w-0 flex-[0_0_86%] sm:flex-[0_0_46%] lg:flex-none">
                   <article className={cn("group flex h-full flex-col gap-4 rounded-[20px] border-2 border-(--pdp-line-soft) bg-white p-5 lg:rounded-[16px] lg:border lg:border-(--pdp-line)", hoverLift)}>
-                    <a href={productUrl(p.slug)} className="relative block aspect-[357/260] overflow-hidden rounded-[12px] bg-(--pdp-cream) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent)" tabIndex={-1} aria-hidden>
+                    <a href={productUrl(p.slug)} className="relative block aspect-square overflow-hidden rounded-[12px] bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent)" tabIndex={-1} aria-hidden>
                       <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 1024px) 360px, 86vw" className={cn("object-cover", hoverZoom)} />
                     </a>
                     <div className="flex min-w-0 flex-col gap-1.5">
@@ -72,6 +72,12 @@ export function RecommendationsSection({ data }: { data: PdpContent["recommendat
                         </a>
                       </h3>
                       <p className="truncate text-[13px] text-(--pdp-body)">{p.descriptor}</p>
+                      {p.rating ? (
+                        <p className="flex items-center gap-1.5 text-[12px] text-(--pdp-meta)">
+                          <Stars value={p.rating} size="sm" />
+                          {p.rating}
+                        </p>
+                      ) : null}
                       <p className="text-[20px] font-bold text-(--pdp-accent-strong)">{formatINR(p.price)}</p>
                     </div>
                     <div className="mt-auto flex flex-col">

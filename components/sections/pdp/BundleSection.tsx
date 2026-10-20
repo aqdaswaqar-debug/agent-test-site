@@ -8,7 +8,7 @@ import { formatINR, useCart } from "@/lib/cart-store";
 import { hoverLift, hoverZoom } from "@/components/ui/motion";
 import { ResponsiveText } from "@/components/ui/ResponsiveText";
 import { cn } from "@/lib/utils";
-import { Dots, QtyStepper, useAddToCart, useEmblaDots } from "./controls";
+import { Dots, QtyStepper, Stars, useAddToCart, useEmblaDots } from "./controls";
 import { productUrl } from "./site-links";
 import { PdpContainer, SectionHeader } from "./PdpSection";
 import type { PdpContent } from "./types";
@@ -107,8 +107,8 @@ export function BundleSection({ data }: { data: PdpContent["bundle"] }) {
                         <Checkbox checked={line.selected} disabled={oos} onChange={(v) => update(p.id, { selected: v })} label={`Include ${p.name}`} />
                         <span className="text-[12px] font-bold tracking-[0.04em] text-(--pdp-accent-strong) uppercase">{p.step}</span>
                       </div>
-                      <a href={productUrl(p.slug)} tabIndex={-1} aria-hidden className="relative block aspect-[349/200] overflow-hidden rounded-[12px] bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent)">
-                        <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 1024px) 350px, 88vw" className={cn("object-contain", hoverZoom)} />
+                      <a href={productUrl(p.slug)} tabIndex={-1} aria-hidden className="relative block aspect-square overflow-hidden rounded-[12px] bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent)">
+                        <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 1024px) 350px, 88vw" className={cn("object-cover", hoverZoom)} />
                         {oos ? <span className="absolute top-3 left-3 rounded-full bg-(--pdp-ink) px-2.5 py-1 text-[11px] font-semibold text-white">Out of stock</span> : null}
                       </a>
                       <div className="flex min-w-0 flex-col gap-1.5">
@@ -118,6 +118,12 @@ export function BundleSection({ data }: { data: PdpContent["bundle"] }) {
                           </a>
                         </h3>
                         <p className="truncate text-[13px] text-(--pdp-body)">{p.descriptor}</p>
+                        {p.rating ? (
+                          <p className="flex items-center gap-1.5 text-[12px] text-(--pdp-meta)">
+                            <Stars value={p.rating} size="sm" />
+                            {p.rating}
+                          </p>
+                        ) : null}
                         <p className="text-[20px] font-bold text-(--pdp-ink)">{formatINR(p.price)}</p>
                       </div>
                       <div className="mt-auto flex items-center justify-between pt-2">
