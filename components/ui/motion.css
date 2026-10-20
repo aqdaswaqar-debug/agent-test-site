@@ -20,10 +20,6 @@
   from { transform: scale(1.06); }
   to { transform: scale(1); }
 }
-@keyframes ui-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
 
 /* Staggered reveal: <Reveal stagger> arms these only for blocks still below the fold. */
 [data-reveal="pending"] [data-reveal-item] { opacity: 0; }
@@ -47,16 +43,10 @@
 /* Hero photo eases from a slight zoom on load (no opacity change, so LCP is not delayed). */
 .ui-settle { animation: ui-settle 1400ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 
-/* Endless horizontal strip (content duplicated once, aria-hidden). Pauses on hover/touch. */
-.ui-marquee { animation: ui-marquee 28s linear infinite; }
-.ui-marquee:hover,
-.ui-marquee:active { animation-play-state: paused; }
-
 @media (prefers-reduced-motion: reduce) {
   .ui-float,
   .ui-float-slow,
   .ui-settle,
-  .ui-marquee,
   [data-reveal] [data-reveal-item],
   [data-reveal] .ui-bar { animation: none; opacity: 1; transform: none; }
 }

@@ -4,12 +4,12 @@ import { useMemo, useState } from "react";
 import { CloseButton, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { Phone, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { iconBtn } from "./header-styles";
-import { NAV, SITE } from "./site-links";
+import { iconBtn } from "./pdp-styles";
+import { BERKOWITS, NAV, SITE } from "./site-links";
 
 /* Loaded on first open only (next/dynamic), so Headless UI's dialog code stays out of the first page load. */
 
-const B = "https://berkowits.com";
+const B = BERKOWITS;
 
 /** Quick links offered by the search panel (live berkowits.com pages). */
 const SEARCH_LINKS = [
@@ -25,7 +25,6 @@ const SEARCH_LINKS = [
   { label: "Skin treatments", href: `${B}/treatments/skin` },
   { label: "AI hair assessment", href: `${B}/ai-tools/ai-hair-assessment` },
 ];
-
 
 export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [query, setQuery] = useState("");
@@ -81,43 +80,42 @@ export function SearchDialog({ open, onClose }: { open: boolean; onClose: () => 
 
 export function MenuDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
-      
-      <Dialog open={open} onClose={onClose} className="relative z-60 lg:hidden">
-        <div aria-hidden className="fixed inset-0 bg-black/30" />
-        <DialogPanel className="fixed inset-y-0 left-0 flex w-[min(320px,86vw)] flex-col gap-6 bg-white p-5 shadow-xl">
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-[16px] font-semibold">Menu</DialogTitle>
-            <CloseButton className={iconBtn} aria-label="Close menu">
-              <X aria-hidden size={20} />
-            </CloseButton>
-          </div>
-          <nav aria-label="Main">
-            <ul className="flex flex-col">
-              {NAV.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    aria-current={item.active ? "page" : undefined}
-                    className={cn(
-                      "block border-b border-(--pdp-line) py-3.5 text-[16px] focus-visible:outline-2 focus-visible:outline-(--pdp-accent)",
-                      item.active ? "font-semibold text-(--pdp-accent-strong)" : "text-(--pdp-ink)",
-                    )}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="mt-auto flex flex-col gap-3">
-            <a href={`tel:${SITE.phoneTel}`} className="flex items-center gap-3 text-[15px] text-(--pdp-ink)">
-              <Phone aria-hidden size={18} className="text-(--pdp-accent-strong)" /> {SITE.phoneDisplay}
-            </a>
-            <a href={SITE.login} className="rounded-[8px] bg-(--pdp-accent-strong) py-3 text-center text-[15px] font-medium text-white">
-              Login/signup
-            </a>
-          </div>
-        </DialogPanel>
-      </Dialog>
+    <Dialog open={open} onClose={onClose} className="relative z-60 lg:hidden">
+      <div aria-hidden className="fixed inset-0 bg-black/30" />
+      <DialogPanel className="fixed inset-y-0 left-0 flex w-[min(320px,86vw)] flex-col gap-6 bg-white p-5 shadow-xl">
+        <div className="flex items-center justify-between">
+          <DialogTitle className="text-[16px] font-semibold">Menu</DialogTitle>
+          <CloseButton className={iconBtn} aria-label="Close menu">
+            <X aria-hidden size={20} />
+          </CloseButton>
+        </div>
+        <nav aria-label="Main">
+          <ul className="flex flex-col">
+            {NAV.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  aria-current={item.active ? "page" : undefined}
+                  className={cn(
+                    "block border-b border-(--pdp-line) py-3.5 text-[16px] focus-visible:outline-2 focus-visible:outline-(--pdp-accent)",
+                    item.active ? "font-semibold text-(--pdp-accent-strong)" : "text-(--pdp-ink)",
+                  )}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="mt-auto flex flex-col gap-3">
+          <a href={`tel:${SITE.phoneTel}`} className="flex items-center gap-3 text-[15px] text-(--pdp-ink)">
+            <Phone aria-hidden size={18} className="text-(--pdp-accent-strong)" /> {SITE.phoneDisplay}
+          </a>
+          <a href={SITE.login} className="rounded-[8px] bg-(--pdp-accent-strong) py-3 text-center text-[15px] font-medium text-white">
+            Login/signup
+          </a>
+        </div>
+      </DialogPanel>
+    </Dialog>
   );
 }

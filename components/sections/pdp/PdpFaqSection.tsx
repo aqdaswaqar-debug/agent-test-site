@@ -11,10 +11,10 @@ const MOBILE_INITIAL = 5;
 function PlusMinus({ open }: { open: boolean }) {
   return (
     <span aria-hidden className="relative grid size-5 shrink-0 place-items-center">
-      <span className={cn("absolute h-0.5 w-3.5 rounded-full transition-colors", open ? "bg-(--pdp-accent-strong)" : "bg-[#80858c]")} />
+      <span className={cn("absolute h-0.5 w-3.5 rounded-full transition-colors", open ? "bg-(--pdp-accent-strong)" : "bg-(--pdp-icon-muted)")} />
       <span
         className={cn(
-          "absolute h-3.5 w-0.5 rounded-full bg-[#80858c] transition-transform duration-200 ease-out motion-reduce:transition-none",
+          "absolute h-3.5 w-0.5 rounded-full bg-(--pdp-icon-muted) transition-transform duration-200 ease-out motion-reduce:transition-none",
           open && "scale-y-0",
         )}
       />
@@ -43,7 +43,7 @@ export function PdpFaqSection({ data }: { data: PdpContent["faq"] }) {
                     as="div"
                     defaultOpen={index === 0}
                     className={cn(
-                      "rounded-[12px] border border-[#e7e5e4] bg-white transition-[border-color] duration-200 data-open:border-(--pdp-accent) lg:border-(--pdp-line) [@media(hover:hover)]:hover:border-(--pdp-peach)",
+                      "rounded-[12px] border border-(--pdp-line-soft) bg-white transition-[border-color] duration-200 data-open:border-(--pdp-accent) lg:border-(--pdp-line) [@media(hover:hover)]:hover:border-(--pdp-peach)",
                       !showAll && index >= MOBILE_INITIAL && "max-lg:hidden",
                     )}
                   >

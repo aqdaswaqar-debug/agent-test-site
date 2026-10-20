@@ -34,7 +34,7 @@ export function AuthoritySection({ data }: { data: PdpContent["authority"] }) {
                 <div
                   key={s.value}
                   data-reveal-item
-                  className={cn("flex flex-col items-center justify-center gap-1 rounded-[12px] border border-(--pdp-accent) bg-[#fcfaf6] p-4 text-center lg:min-h-[100px] lg:rounded-[10px] lg:bg-white", hoverLift)}
+                  className={cn("flex flex-col items-center justify-center gap-1 rounded-[12px] border border-(--pdp-accent) bg-(--pdp-paper) p-4 text-center lg:min-h-[100px] lg:rounded-[10px] lg:bg-white", hoverLift)}
                 >
                   <dt className="order-2 text-[12px] text-(--pdp-meta) lg:text-[14px] lg:font-semibold lg:text-(--pdp-ink)">{s.label}</dt>
                   <dd className="order-1 text-[16px] font-bold text-(--pdp-accent-strong) lg:text-[30px]">

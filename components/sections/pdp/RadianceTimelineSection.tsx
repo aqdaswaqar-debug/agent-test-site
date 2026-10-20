@@ -8,7 +8,7 @@ export function RadianceTimelineSection({ data }: { data: PdpContent["radianceTi
   return (
     <section
       aria-labelledby="timeline-title"
-      className="bg-[linear-gradient(249deg,#fdf0eb_25%,#faf6f2_75%)] py-8 lg:bg-[linear-gradient(204deg,#fdf0eb_25%,#faf6f2_75%)] lg:py-24"
+      className="bg-[linear-gradient(249deg,var(--pdp-blush)_25%,var(--pdp-cream)_75%)] py-8 lg:bg-[linear-gradient(204deg,var(--pdp-blush)_25%,var(--pdp-cream)_75%)] lg:py-24"
     >
       <PdpContainer className="flex flex-col gap-6 lg:gap-14">
         <SectionHeader id="timeline-title" eyebrow={data.eyebrow} title={data.title} intro={data.intro} />
@@ -18,7 +18,7 @@ export function RadianceTimelineSection({ data }: { data: PdpContent["radianceTi
           <div className="flex flex-col gap-3 lg:px-[100px]">
             <div
               role="img"
-              aria-label="Progress through the 6-week timeline"
+              aria-label={`Timeline progress: ${data.milestones.filter((m) => m.reached).at(-1)?.node ?? "W1"} of 6 weeks`}
               className="h-1.5 overflow-hidden rounded-full bg-(--pdp-line)"
             >
               <div className="ui-bar h-full w-[67%] origin-left rounded-full bg-(--pdp-accent-strong) lg:w-[71%]" />

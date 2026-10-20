@@ -27,7 +27,7 @@ export function ConcernsSection({ data }: { data: PdpContent["concerns"] }) {
                     data-reveal-item
                     className={cn(
                       "rounded-[12px] border transition-[border-color,background-color,translate] duration-200",
-                      isOpen ? "border-(--pdp-accent) bg-(--pdp-tint) lg:border-(--pdp-peach)" : "border-[#e7e5e4] bg-white motion-safe:[@media(hover:hover)]:hover:-translate-y-0.5 [@media(hover:hover)]:hover:border-(--pdp-peach)",
+                      isOpen ? "border-(--pdp-accent) bg-(--pdp-tint) lg:border-(--pdp-peach)" : "border-(--pdp-line-soft) bg-white motion-safe:[@media(hover:hover)]:hover:-translate-y-0.5 [@media(hover:hover)]:hover:border-(--pdp-peach)",
                     )}
                   >
                     <h3>
@@ -46,7 +46,7 @@ export function ConcernsSection({ data }: { data: PdpContent["concerns"] }) {
                         <ChevronDown
                           aria-hidden
                           size={20}
-                          className={cn("shrink-0 transition-[rotate] duration-200", isOpen ? "rotate-180 text-(--pdp-accent-strong)" : "text-[#80858c]")}
+                          className={cn("shrink-0 transition-[rotate] duration-200", isOpen ? "rotate-180 text-(--pdp-accent-strong)" : "text-(--pdp-icon-muted)")}
                         />
                       </button>
                     </h3>

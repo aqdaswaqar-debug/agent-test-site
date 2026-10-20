@@ -9,7 +9,7 @@ import { hoverLift, hoverZoom } from "@/components/ui/motion";
 import { ResponsiveText } from "@/components/ui/ResponsiveText";
 import { cn } from "@/lib/utils";
 import { Dots, QtyStepper, useAddToCart, useEmblaDots } from "./controls";
-import { OUT_OF_STOCK, productUrl } from "./radiate-vitamin-c";
+import { productUrl } from "./site-links";
 import { PdpContainer, SectionHeader } from "./PdpSection";
 import type { PdpContent } from "./types";
 
@@ -40,20 +40,20 @@ function Checkbox({ checked, indeterminate = false, disabled, onChange, label }:
 /** "Complete your routine" bundle (Figma 6969:23985 / 7133:23531): tick products, set quantities, add all at once. */
 export function BundleSection({ data }: { data: PdpContent["bundle"] }) {
   const [lines, setLines] = useState<Record<string, Line>>(() =>
-    Object.fromEntries(data.items.map((p) => [p.id, { selected: !OUT_OF_STOCK.has(p.id), quantity: 1 }])),
+    Object.fromEntries(data.items.map((p) => [p.id, { selected: p.inStock !== false, quantity: 1 }])),
   );
   const [viewportRef, embla] = useEmblaCarousel({
     align: "start",
     containScroll: "trimSnaps",
     // Open on the first product that can be bought (the cleanser is out of stock).
-    startIndex: Math.max(0, data.items.findIndex((p) => !OUT_OF_STOCK.has(p.id))),
+    startIndex: Math.max(0, data.items.findIndex((p) => p.inStock !== false)),
     breakpoints: { "(min-width: 1024px)": { active: false } },
   });
   const { selected: slide, count, scrollTo } = useEmblaDots(embla);
   const addToCart = useAddToCart();
   const setCartOpen = useCart((s) => s.setOpen);
 
-  const available = data.items.filter((p) => !OUT_OF_STOCK.has(p.id));
+  const available = data.items.filter((p) => p.inStock !== false);
   const chosen = available.filter((p) => lines[p.id]?.selected);
   const total = chosen.reduce((sum, p) => sum + p.price * (lines[p.id]?.quantity ?? 1), 0);
   const allSelected = chosen.length === available.length && available.length > 0;
@@ -93,7 +93,7 @@ export function BundleSection({ data }: { data: PdpContent["bundle"] }) {
             <ul className="flex gap-3 lg:grid lg:grid-cols-3 lg:gap-6">
               {data.items.map((p) => {
                 const line = lines[p.id]!;
-                const oos = OUT_OF_STOCK.has(p.id);
+                const oos = p.inStock === false;
                 return (
                   <li key={p.id} className="min-w-0 flex-[0_0_88%] sm:flex-[0_0_48%] lg:flex-none">
                     <article
@@ -107,7 +107,7 @@ export function BundleSection({ data }: { data: PdpContent["bundle"] }) {
                         <Checkbox checked={line.selected} disabled={oos} onChange={(v) => update(p.id, { selected: v })} label={`Include ${p.name}`} />
                         <span className="text-[12px] font-bold tracking-[0.04em] text-(--pdp-accent-strong) uppercase">{p.step}</span>
                       </div>
-                      <a href={productUrl(p.slug)} className="relative block aspect-[349/200] overflow-hidden rounded-[12px] bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent)">
+                      <a href={productUrl(p.slug)} tabIndex={-1} aria-hidden className="relative block aspect-[349/200] overflow-hidden rounded-[12px] bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent)">
                         <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 1024px) 350px, 88vw" className={cn("object-contain", hoverZoom)} />
                         {oos ? <span className="absolute top-3 left-3 rounded-full bg-(--pdp-ink) px-2.5 py-1 text-[11px] font-semibold text-white">Out of stock</span> : null}
                       </a>

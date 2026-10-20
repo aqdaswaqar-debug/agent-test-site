@@ -28,6 +28,24 @@
   --pdp-teal-text: #2dd4bf;
   --pdp-teal-soft: rgb(20 184 166 / 0.2);
   --pdp-closing-cream: #f5f1e9;
+  --pdp-line-soft: #e7e5e4; /* warm light border */
+  --pdp-ink-warm: #1c1917; /* price / spec headings */
+  --pdp-line-cool: #e5e7eb; /* mobile card / media borders */
+  --pdp-peach-deep: #e59e74; /* decorative peach (icons, After-card border) */
+  --pdp-icon-muted: #80858c; /* closed chevrons / plus icons */
+  --pdp-surface: #f9fafb; /* gallery / qty pill background */
+  --pdp-slate: #4a5565; /* Figma Body text Color */
+  --pdp-charcoal: #303030; /* form text */
+  --pdp-on-teal: #0f2027; /* dark text on teal */
+  --pdp-error-on-dark: #fda29b; /* error text in the footer */
+  --pdp-error-line-dark: #f97066; /* error border in the footer */
+  --pdp-paper: #fcfaf6; /* mobile stat cards */
+  --pdp-studio: #e5e5e5; /* 360 video backdrop */
+  --pdp-field-line: #d1d5dc; /* input border */
+  --pdp-dot: #b9b2aa; /* inactive carousel dot */
+  --pdp-icon-subtle: #99a1af; /* input icon */
+  --pdp-teal-hover: #2dd4bf; /* teal hover */
+  --pdp-icon: #374151; /* header icons */
   --pdp-success: #15803d;
   --pdp-error: #b42318;
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Disclosure, DisclosureButton, DisclosurePanel, Radio, RadioGroup } from "@headlessui/react";
 import { ArrowRight, BadgePercent, Check, CircleCheck, Copy, Loader2, MapPin, Plus, ShoppingCart } from "lucide-react";
 import toast from "react-hot-toast";
@@ -30,12 +30,15 @@ export function useBuyActions(product: PdpContent["product"]) {
 
 function CouponCard({ coupon }: { coupon: PdpContent["product"]["coupons"][number] }) {
   const [copied, setCopied] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(coupon.code);
       setCopied(true);
       toast.success(`Code ${coupon.code} copied`, { id: "coupon" });
-      setTimeout(() => setCopied(false), 2000);
+      clearTimeout(timer.current);
+      timer.current = setTimeout(() => setCopied(false), 2000);
     } catch {
       toast.error("Couldn't copy — please note the code down", { id: "coupon" });
     }
@@ -85,13 +88,13 @@ function DeliveryCheck() {
   };
 
   return (
-    <form onSubmit={submit} noValidate className="flex flex-col gap-3 border-b border-[#e5e7eb] pb-6">
+    <form onSubmit={submit} noValidate className="flex flex-col gap-3 border-b border-(--pdp-line-cool) pb-6">
       <label htmlFor="pdp-pin" className="text-[14px] text-(--pdp-meta)">
         Check for Delivery Details
       </label>
       <div className="flex gap-3">
         <div className="relative flex-1">
-          <MapPin aria-hidden size={20} className="absolute top-1/2 left-3 -translate-y-1/2 text-[#99a1af]" />
+          <MapPin aria-hidden size={20} className="absolute top-1/2 left-3 -translate-y-1/2 text-(--pdp-icon-subtle)" />
           <input
             id="pdp-pin"
             inputMode="numeric"
@@ -102,13 +105,13 @@ function DeliveryCheck() {
             placeholder="Enter PIN code"
             aria-invalid={state.status === "error" || undefined}
             aria-describedby={state.status === "ok" || state.status === "error" ? "pdp-pin-msg" : undefined}
-            className="h-12 w-full rounded-[10px] border border-[#d1d5dc] bg-white pr-3 pl-10 text-[16px] outline-none placeholder:text-[#30303080] focus:border-(--pdp-accent) aria-invalid:border-(--pdp-error)"
+            className="h-12 w-full rounded-[10px] border border-(--pdp-field-line) bg-white pr-3 pl-10 text-[16px] outline-none placeholder:text-(--pdp-charcoal)/50 focus:border-(--pdp-accent) aria-invalid:border-(--pdp-error)"
           />
         </div>
         <button
           type="submit"
           disabled={state.status === "loading"}
-          className="flex h-12 items-center gap-2 rounded-[10px] bg-(--pdp-tint) px-6 text-[16px] font-medium text-[#303030] transition-[background-color,scale] active:scale-[0.98] disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent) [@media(hover:hover)]:hover:bg-(--pdp-peach)/40"
+          className="flex h-12 items-center gap-2 rounded-[10px] bg-(--pdp-tint) px-6 text-[16px] font-medium text-(--pdp-charcoal) transition-[background-color,scale] active:scale-[0.98] disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent) [@media(hover:hover)]:hover:bg-(--pdp-peach)/40"
         >
           {state.status === "loading" ? <Loader2 aria-hidden size={16} className="animate-spin" /> : null}
           Check
@@ -122,7 +125,7 @@ function DeliveryCheck() {
 }
 
 export function BuyBox({ product }: Props) {
-  const { packId, setPack, quantity, setQuantity } = usePdpSelection();
+  const { setPack, quantity, setQuantity } = usePdpSelection();
   const { pack, addToCart, buyNow } = useBuyActions(product);
   const off = discountPercent(pack);
 
@@ -153,9 +156,9 @@ export function BuyBox({ product }: Props) {
       </div>
 
       {/* Price */}
-      <div className="flex flex-col gap-2 border-y border-[#e7e5e4] py-5">
+      <div className="flex flex-col gap-2 border-y border-(--pdp-line-soft) py-5">
         <div className="flex flex-wrap items-center gap-3" aria-live="polite">
-          <span className="text-[36px] leading-10 text-[#1c1917]">{formatINR(pack.price)}</span>
+          <span className="text-[36px] leading-10 text-(--pdp-ink-warm)">{formatINR(pack.price)}</span>
           {off > 0 ? (
             <>
               <s className="text-[24px] leading-8 text-(--pdp-strike)">
@@ -193,7 +196,7 @@ export function BuyBox({ product }: Props) {
       </div>
 
       {/* Pack — placed before the CTAs so the visitor picks what they buy first (Figma shows it after). */}
-      <RadioGroup value={packId} onChange={setPack} aria-label="Select size" className="flex flex-col gap-3">
+      <RadioGroup value={pack.id} onChange={setPack} aria-label="Select size" className="flex flex-col gap-3">
         <p className="text-[14px] tracking-[0.02em] text-(--pdp-meta) uppercase">Select size:</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
           {product.packs.map((p) => (
@@ -253,7 +256,7 @@ export function BuyBox({ product }: Props) {
             <a
               key={l.label}
               href={l.href}
-              className="grid h-[50px] place-items-center rounded-[10px] border border-(--pdp-tint) bg-(--pdp-tint) text-[16px] font-medium text-[#1c1917] transition-[background-color] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent) lg:border-[#e7e5e4] [@media(hover:hover)]:hover:bg-(--pdp-peach)/40"
+              className="grid h-[50px] place-items-center rounded-[10px] border border-(--pdp-tint) bg-(--pdp-tint) text-[16px] font-medium text-(--pdp-ink-warm) transition-[background-color] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent) lg:border-(--pdp-line-soft) [@media(hover:hover)]:hover:bg-(--pdp-peach)/40"
             >
               {l.label}
             </a>
@@ -261,11 +264,11 @@ export function BuyBox({ product }: Props) {
         </div>
         <div className="flex flex-col gap-2">
           {product.accordions.map((a) => (
-            <Disclosure key={a.title} as="div" className="overflow-hidden rounded-[10px] border border-[#e7e5e4]">
+            <Disclosure key={a.title} as="div" className="overflow-hidden rounded-[10px] border border-(--pdp-line-soft)">
               {({ open }) => (
                 <>
                   <h2>
-                    <DisclosureButton className="flex h-[58px] w-full items-center justify-between bg-(--pdp-tint) px-5 text-left text-[16px] font-medium text-[#1c1917] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--pdp-accent)">
+                    <DisclosureButton className="flex h-[58px] w-full items-center justify-between bg-(--pdp-tint) px-5 text-left text-[16px] font-medium text-(--pdp-ink-warm) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--pdp-accent)">
                       {a.title}
                       <Plus aria-hidden size={20} className={cn("text-(--pdp-accent-strong) transition-[rotate] duration-200 lg:text-(--pdp-meta)", open && "rotate-45")} />
                     </DisclosureButton>

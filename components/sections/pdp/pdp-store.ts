@@ -17,7 +17,8 @@ type PdpSelection = {
 };
 
 export const usePdpSelection = create<PdpSelection>()((set, get) => ({
-  packId: "1-month",
+  /** Empty = the product's first pack (resolved in useBuyActions), so the store works for any PDP. */
+  packId: "",
   quantity: 1,
   wishlisted: false,
   setPack: (packId) => set({ packId }),

@@ -6,7 +6,7 @@ export type Video = { src: string; poster: string; label: string };
 export type Pack = {
   id: string;
   label: string;
-  /** Number of bottles in the pack (multiplies price and MRP). */
+  /** Bottles in the pack (used for the per-bottle price). */
   units: number;
   price: number;
   mrp: number;
@@ -21,6 +21,8 @@ export type Product = {
   descriptor: string;
   price: number;
   image: Media;
+  /** false = shown but can't be added (live stock). Defaults to in stock. */
+  inStock?: boolean;
 };
 
 export type HeadingCopy = { eyebrow: string; title: string; mobileTitle?: string; intro?: string; mobileIntro?: string };
@@ -33,14 +35,13 @@ export type PdpContent = {
     title: [string, string];
     lead: string;
     chips: string[];
-    rating: { value: number; label: string; boughtLabel: string };
+    rating: { value: number; label: string };
     packs: Pack[];
     bankOffers: string[];
     coupons: { title: string; offer: string; code: string }[];
     gallery: Media[];
     trustRow: { icon: "payment" | "return" | "shipping"; label: string }[];
     accordions: { title: string; body: string[] }[];
-    volume: string;
   };
   trustStrip: { icon: "sparkles" | "sun" | "shield" | "droplet" | "calendar"; title: string; text: string }[];
   concerns: HeadingCopy & {

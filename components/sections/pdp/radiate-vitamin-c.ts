@@ -10,7 +10,6 @@ import type { PdpContent } from "./types";
 
 const IMG = "/images/pdp/radiate-vitamin-c";
 const VID = "/videos/pdp/radiate-vitamin-c";
-export const BERKOWITS = "https://berkowits.com";
 
 const video = (name: string, label: string) => ({ src: `${VID}/${name}.mp4`, poster: `${IMG}/${name}-poster.webp`, label });
 
@@ -27,7 +26,7 @@ export const radiateVitaminC: PdpContent = {
     chips: ["Brightens Dull Skin", "Helps Reduce Dark Spots", "Boosts Radiance", "Lightweight & Non-Oily"],
     // TODO(content): Figma shows "4.8 (5k+ verified reviews)" and "5k+ bought in past month" (copied from the sunscreen PDP).
     // The live product shows 4.9 with no review count, so only the rating is shown until real review data is connected.
-    rating: { value: 4.9, label: "4.9 rating", boughtLabel: "" },
+    rating: { value: 4.9, label: "4.9 rating" },
     packs: [
       { id: "1-month", label: "1 Month Pack", units: 1, price: UNIT_PRICE, mrp: UNIT_PRICE },
       { id: "3-months", label: "3 Months · 2 pcs", units: 2, price: 2267, mrp: UNIT_PRICE * 2 },
@@ -82,7 +81,6 @@ export const radiateVitaminC: PdpContent = {
         ],
       },
     ],
-    volume: "30 ml",
   },
 
   trustStrip: [
@@ -281,6 +279,7 @@ export const radiateVitaminC: PdpContent = {
         name: "Radiate Skin Brightening Facewash",
         descriptor: "Cleanse + Prep (100 g)",
         price: 499,
+        inStock: false, // berkowits.com shows it out of stock (20 Oct 2026)
         image: { src: "/images/pdp/products/radiate-cleanser.webp", alt: "Radiate facewash pump bottle", width: 900, height: 514 },
       },
       {
@@ -344,6 +343,7 @@ export const radiateVitaminC: PdpContent = {
         name: "Radiate Skin Brightening Facewash",
         descriptor: "For cleansing + routine prep",
         price: 499,
+        inStock: false,
         image: { src: "/images/pdp/products/radiate-cleanser.webp", alt: "Radiate facewash pump bottle", width: 900, height: 514 },
       },
     ],
@@ -376,8 +376,3 @@ export const radiateVitaminC: PdpContent = {
     video: video("last-section-bg", ""),
   },
 };
-
-/** Live stock as of 20 Oct 2026 (berkowits.com shows the facewash as out of stock). */
-export const OUT_OF_STOCK = new Set(["radiate-facewash"]);
-
-export const productUrl = (slug: string) => `${BERKOWITS}/products/${slug}`;

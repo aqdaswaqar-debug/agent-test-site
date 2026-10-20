@@ -97,7 +97,7 @@ export function Dots({ count, selected, onSelect, label, className }: { count: n
           <span
             className={cn(
               "block h-2 w-6 origin-center rounded-full transition-[scale,background-color] duration-200 motion-reduce:transition-none",
-              i === selected ? "scale-x-100 bg-(--pdp-accent-strong)" : "scale-x-[0.33] bg-[#b9b2aa]",
+              i === selected ? "scale-x-100 bg-(--pdp-accent-strong)" : "scale-x-[0.33] bg-(--pdp-dot)",
             )}
           />
         </button>

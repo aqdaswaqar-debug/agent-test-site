@@ -26,7 +26,7 @@ function UgcCard({ item, liked, onLike }: { item: Item; liked: boolean; onLike: 
             onClick={onLike}
             aria-pressed={liked}
             aria-label={`${liked ? "Unlike" : "Like"} ${item.tag.toLowerCase()} post by ${item.name}`}
-            className="grid size-9 place-items-center rounded-full bg-white/85 text-[#e59e74] transition-[scale] duration-150 active:scale-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="grid size-9 place-items-center rounded-full bg-white/85 text-(--pdp-peach-deep) transition-[scale] duration-150 active:scale-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             <Star aria-hidden size={15} className={cn("transition-colors", liked && "fill-(--pdp-accent-strong) text-(--pdp-accent-strong)")} />
           </button>

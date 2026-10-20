@@ -59,10 +59,10 @@ export function Gallery({ images, trustRow, name }: Props) {
               aria-label={`Show image ${i + 1}: ${img.alt}`}
               aria-current={i === selected ? "true" : undefined}
               className={cn(
-                "relative block size-24 overflow-hidden rounded-[10px] border-2 bg-white p-0.5 transition-[border-color,translate,box-shadow] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent) motion-safe:[@media(hover:hover)]:hover:-translate-y-0.5",
+                "relative block size-24 overflow-hidden rounded-[10px] border-2 bg-white p-0.5 transition-[border-color,translate] duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent) motion-safe:[@media(hover:hover)]:hover:-translate-y-0.5",
                 i === selected
                   ? "border-(--pdp-accent) shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.1)]"
-                  : "border-[#e7e5e4] [@media(hover:hover)]:hover:border-(--pdp-peach)",
+                  : "border-(--pdp-line-soft) [@media(hover:hover)]:hover:border-(--pdp-peach)",
               )}
             >
               <Image src={img.src} alt="" width={96} height={96} sizes="96px" className="size-full rounded-[8px] object-cover" />
@@ -72,7 +72,7 @@ export function Gallery({ images, trustRow, name }: Props) {
       </ul>
 
       {/* Main card */}
-      <div className="min-w-0 flex-1 overflow-hidden rounded-[16px] border border-[#e5e7eb] bg-[linear-gradient(125deg,#fff_0%,#fafaf9_100%)] lg:border-(--pdp-tint)">
+      <div className="min-w-0 flex-1 overflow-hidden rounded-[16px] border border-(--pdp-line-cool) bg-[linear-gradient(125deg,#fff_0%,#fafaf9_100%)] lg:border-(--pdp-tint)">
         <div
           role="region"
           aria-roledescription="carousel"
@@ -86,7 +86,7 @@ export function Gallery({ images, trustRow, name }: Props) {
               {images.map((img, i) => (
                 <li
                   key={img.src}
-                  className="relative aspect-square min-w-0 flex-[0_0_100%] bg-[#f9fafb]"
+                  className="relative aspect-square min-w-0 flex-[0_0_100%] bg-(--pdp-surface)"
                   aria-roledescription="slide"
                   aria-label={`${i + 1} of ${images.length}`}
                 >
@@ -114,7 +114,7 @@ export function Gallery({ images, trustRow, name }: Props) {
         </div>
         <Dots count={count} selected={selected} onSelect={scrollTo} label="Image" className="pt-3 lg:hidden" />
 
-        <ul className="grid grid-cols-3 border-t border-[#e7e5e4] px-2 py-6 lg:py-7">
+        <ul className="grid grid-cols-3 border-t border-(--pdp-line-soft) px-2 py-6 lg:py-7">
           {trustRow.map((t) => {
             const Icon = TRUST_ICONS[t.icon];
             return (

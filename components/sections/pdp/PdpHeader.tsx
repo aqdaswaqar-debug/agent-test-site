@@ -8,12 +8,11 @@ import toast from "react-hot-toast";
 import { cartCount, useCart } from "@/lib/cart-store";
 import { cn } from "@/lib/utils";
 import { usePdpSelection } from "./pdp-store";
-import { iconBtn } from "./header-styles";
+import { iconBtn } from "./pdp-styles";
 import { NAV, SITE } from "./site-links";
 
 const SearchDialog = dynamic(() => import("./HeaderDialogs").then((m) => m.SearchDialog), { ssr: false });
 const MenuDrawer = dynamic(() => import("./HeaderDialogs").then((m) => m.MenuDrawer), { ssr: false });
-
 
 function CartButton() {
   const items = useCart((s) => s.items);
@@ -50,7 +49,7 @@ function WishlistButton({ className }: { className?: string }) {
 export function PdpHeader() {
   const [menuOpen, setMenuOpenState] = useState(false);
   const [searchOpen, setSearchOpenState] = useState(false);
-  // Mount each dialog the first time it is needed, then keep it mounted so closing can animate.
+  // Download and mount each dialog the first time it is needed (keeps Headless UI dialog code out of the first load).
   const [menuLoaded, setMenuLoaded] = useState(false);
   const [searchLoaded, setSearchLoaded] = useState(false);
   const setMenuOpen = (v: boolean) => {

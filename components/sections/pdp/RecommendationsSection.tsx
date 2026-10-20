@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { Check, Plus } from "lucide-react";
@@ -8,14 +8,16 @@ import { formatINR } from "@/lib/cart-store";
 import { hoverLift, hoverZoom } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 import { Dots, useAddToCart, useEmblaDots } from "./controls";
-import { OUT_OF_STOCK, productUrl } from "./radiate-vitamin-c";
+import { productUrl } from "./site-links";
 import { PdpContainer, SectionHeader } from "./PdpSection";
 import type { PdpContent, Product } from "./types";
 
 function QuickAdd({ product }: { product: Product }) {
   const addToCart = useAddToCart();
   const [added, setAdded] = useState(false);
-  const oos = OUT_OF_STOCK.has(product.id);
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
+  const oos = product.inStock === false;
 
   if (oos) {
     return (
@@ -33,7 +35,8 @@ function QuickAdd({ product }: { product: Product }) {
       onClick={() => {
         addToCart({ id: product.id, name: product.name, price: product.price, image: product.image.src });
         setAdded(true);
-        setTimeout(() => setAdded(false), 1500);
+        clearTimeout(timer.current);
+        timer.current = setTimeout(() => setAdded(false), 1500);
       }}
       className="group/cta flex items-center justify-center gap-2 rounded-[8px] bg-(--pdp-accent-strong) py-3 text-[14px] font-bold tracking-[0.02em] text-white uppercase transition-[background-color,scale] duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent) [@media(hover:hover)]:hover:bg-(--pdp-accent-hover)"
     >
@@ -58,8 +61,8 @@ export function RecommendationsSection({ data }: { data: PdpContent["recommendat
             <ul className="flex gap-3 lg:grid lg:grid-cols-3 lg:gap-6">
               {data.items.map((p) => (
                 <li key={p.id} className="min-w-0 flex-[0_0_86%] sm:flex-[0_0_46%] lg:flex-none">
-                  <article className={cn("group flex h-full flex-col gap-4 rounded-[20px] border-2 border-[#e7e5e4] bg-white p-5 lg:rounded-[16px] lg:border lg:border-(--pdp-line)", hoverLift)}>
-                    <a href={productUrl(p.slug)} className="relative block aspect-[357/260] overflow-hidden rounded-[12px] bg-(--pdp-cream) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent)" tabIndex={-1}>
+                  <article className={cn("group flex h-full flex-col gap-4 rounded-[20px] border-2 border-(--pdp-line-soft) bg-white p-5 lg:rounded-[16px] lg:border lg:border-(--pdp-line)", hoverLift)}>
+                    <a href={productUrl(p.slug)} className="relative block aspect-[357/260] overflow-hidden rounded-[12px] bg-(--pdp-cream) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--pdp-accent)" tabIndex={-1} aria-hidden>
                       <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 1024px) 360px, 86vw" className={cn("object-cover", hoverZoom)} />
                     </a>
                     <div className="flex min-w-0 flex-col gap-1.5">

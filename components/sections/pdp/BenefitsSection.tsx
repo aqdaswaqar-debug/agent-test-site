@@ -18,7 +18,7 @@ function Benefit({ item, n }: { item: Item; n: number }) {
       </div>
       <div className="flex flex-col gap-1">
         <h3 className="text-[14px] font-bold text-(--pdp-ink) lg:hidden">{item.mobileTitle}</h3>
-        <p className="text-[12px] text-[#4a5565] lg:text-[16px] lg:leading-[1.5] lg:font-medium lg:text-(--pdp-body)">
+        <p className="text-[12px] text-(--pdp-slate) lg:text-[16px] lg:leading-[1.5] lg:font-medium lg:text-(--pdp-body)">
           <ResponsiveText desktop={item.body} mobile={item.mobileBody} />
         </p>
       </div>
@@ -40,11 +40,11 @@ export function BenefitsSection({ data }: { data: PdpContent["benefits"] }) {
 
   return (
     <section aria-labelledby="benefits-title" className="relative isolate overflow-hidden py-8 lg:py-20">
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <InViewVideo src={data.video.src} poster={data.video.poster} control="none" />
-        <div className="absolute inset-0 bg-[rgb(250_246_240/0.35)]" />
+      <div className="absolute inset-0">
+        <InViewVideo src={data.video.src} poster={data.video.poster} buttonClassName="z-20" />
+        <div aria-hidden className="absolute inset-0 bg-[rgb(250_246_240/0.35)]" />
       </div>
-      <PdpContainer className="flex flex-col items-center gap-6 lg:gap-14">
+      <PdpContainer className="relative flex flex-col items-center gap-6 lg:gap-14">
         <SectionHeader id="benefits-title" eyebrow={data.eyebrow} title={<ResponsiveText desktop={data.title} mobile={data.mobileTitle} />} titleClassName="lg:font-semibold" />
 
         {/* Mobile: 3 cards, image, 3 cards. Desktop: left column, centre image, right column. */}

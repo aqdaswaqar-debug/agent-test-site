@@ -55,9 +55,10 @@ Rules (non-negotiable):
 - Animate `transform` and `opacity` only. Shadows fade on a pseudo-element; never animate `box-shadow`, `width` or `height`. Tailwind v4 `scale-*`/`translate-*` set the `scale`/`translate` properties: transition those (`transition-[scale]`) or use `transition-transform`.
 - Hover effects inside `[@media(hover:hover)]`; every hover has a `focus-visible` twin.
 - `prefers-reduced-motion: reduce` turns all of it off (CSS media query + JS checks).
+- Anything that moves on its own for more than 5 s needs a visible pause control (WCAG 2.2.2): every looping video, including background ones, gets a pause button; no auto-scrolling marquees — use a swipeable snap-scroll row instead.
 - Never hide above-the-fold content waiting for JS; reveal effects arm only for content still below the fold. Never fade the LCP image.
 - Server HTML always contains the final content (numbers, answers) for SEO and no-JS users.
-- Implementation lives in: `components/ui/Reveal.tsx` (stagger), `components/ui/CountUp.tsx`, `components/ui/motion.ts` (`hoverLift`, `hoverZoom`), `components/ui/ButtonLink.tsx` (`icon`), keyframes and classes in `components/ui/motion.css` (`ui-rise`, `ui-fill`, `ui-float`, `ui-settle`, `ui-marquee`). Reuse them; don't add GSAP/Lenis.
+- Implementation lives in: `components/ui/Reveal.tsx` (stagger), `components/ui/CountUp.tsx`, `components/ui/motion.ts` (`hoverLift`, `hoverZoom`), `components/ui/ButtonLink.tsx` (`icon`), keyframes and classes in `components/ui/motion.css` (`ui-rise`, `ui-fill`, `ui-float`, `ui-settle`). Reuse them; don't add GSAP/Lenis.
 
 ## 4. Human guidance gate (G-intent)
 Decide yourself, build it, and list it under **Decisions I made** when the behavior is industry standard, reversible, and has no cost, legal or data impact (everything in the tables above).

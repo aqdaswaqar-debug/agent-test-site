@@ -67,7 +67,7 @@ export function StickyBar({ product }: { product: PdpContent["product"] }) {
               {product.name} <span className="font-normal text-(--pdp-subtle) max-lg:hidden">· {pack.label}</span>
             </p>
             <div className="flex items-center gap-1.5 lg:gap-2">
-              <span className="text-[16px] font-bold text-[#1c1917] lg:text-[18px]">{formatINR(pack.price)}</span>
+              <span className="text-[16px] font-bold text-(--pdp-ink-warm) lg:text-[18px]">{formatINR(pack.price)}</span>
               {off > 0 ? (
                 <>
                   <s className="text-[12px] text-(--pdp-strike) lg:text-[13px]">{formatINR(pack.mrp)}</s>
@@ -81,7 +81,7 @@ export function StickyBar({ product }: { product: PdpContent["product"] }) {
 
         <div className="flex items-center gap-3">
           <span className="hidden text-[13px] text-(--pdp-meta) uppercase xl:inline">Quantity:</span>
-          <QtyStepper size="sm" value={quantity} onChange={setQuantity} label="Quantity" className="rounded-[8px] border border-[#e5e7eb] bg-[#f9fafb] p-1 lg:border-0 lg:bg-transparent lg:p-0" />
+          <QtyStepper size="sm" value={quantity} onChange={setQuantity} label="Quantity" className="rounded-[8px] border border-(--pdp-line-cool) bg-(--pdp-surface) p-1 lg:border-0 lg:bg-transparent lg:p-0" />
           <button
             type="button"
             onClick={addToCart}

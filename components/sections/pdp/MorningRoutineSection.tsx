@@ -50,7 +50,7 @@ export function MorningRoutineSection({ data }: { data: PdpContent["morningRouti
                   <li
                     key={step.name}
                     data-reveal-item
-                    className="flex items-center gap-3 rounded-[12px] border border-[#4a5565]/60 bg-white p-3 transition-[translate] duration-200 motion-safe:[@media(hover:hover)]:hover:translate-x-1 lg:gap-4 lg:p-4"
+                    className="flex items-center gap-3 rounded-[12px] border border-(--pdp-slate)/60 bg-white p-3 transition-[translate] duration-200 motion-safe:[@media(hover:hover)]:hover:translate-x-1 lg:gap-4 lg:p-4"
                   >
                     <span className="grid size-8 shrink-0 place-items-center rounded-full bg-(--pdp-cream) text-[14px] font-bold text-(--pdp-accent-strong) lg:size-10 lg:text-[16px]">
                       {i + 1}

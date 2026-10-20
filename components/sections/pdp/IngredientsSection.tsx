@@ -44,7 +44,7 @@ export function IngredientsSection({ data }: { data: PdpContent["ingredients"] }
                 <li
                   key={s.name}
                   className={cn(
-                    "flex min-w-0 flex-[0_0_280px] flex-col gap-1 rounded-[12px] border border-[#e7e5e4] bg-white p-4 lg:gap-3.5 lg:rounded-[16px] lg:border-(--pdp-accent) lg:p-6",
+                    "flex min-w-0 flex-[0_0_280px] flex-col gap-1 rounded-[12px] border border-(--pdp-line-soft) bg-white p-4 lg:gap-3.5 lg:rounded-[16px] lg:border-(--pdp-accent) lg:p-6",
                     hoverLift,
                   )}
                 >

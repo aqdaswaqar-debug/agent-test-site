@@ -1,4 +1,4 @@
-import { productUrl } from "./radiate-vitamin-c";
+import { BERKOWITS, productUrl } from "./site-links";
 import type { PdpContent } from "./types";
 
 /**
@@ -42,8 +42,8 @@ export function buildPdpStructuredData(content: PdpContent, pageUrl: string, sit
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://berkowits.com/" },
-          { "@type": "ListItem", position: 2, name: "Radiate", item: "https://berkowits.com/collections/radiate" },
+          { "@type": "ListItem", position: 1, name: "Home", item: `${BERKOWITS}/` },
+          { "@type": "ListItem", position: 2, name: "Radiate", item: `${BERKOWITS}/collections/radiate` },
           { "@type": "ListItem", position: 3, name: p.name, item: pageUrl },
         ],
       },

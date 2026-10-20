@@ -15,7 +15,7 @@ function PhotoCard({ image, label, caption, highlight }: { image: Media; label: 
       data-reveal-item
       className={cn(
         "group flex flex-1 flex-col gap-3 rounded-[12px] border bg-white p-3 drop-shadow-[0_6px_9px_rgba(0,0,0,0.05)] lg:rounded-[16px] lg:p-4",
-        highlight ? "border-[#e59e74]" : "border-(--pdp-line)",
+        highlight ? "border-(--pdp-peach-deep)" : "border-(--pdp-line)",
         hoverLift,
       )}
     >

@@ -1,6 +1,10 @@
 /** Header and footer navigation, pointing at the live berkowits.com pages (collected 20 Oct 2026). */
 
-const B = "https://berkowits.com";
+/** Live store the test pages link to. */
+export const BERKOWITS = "https://berkowits.com";
+const B = BERKOWITS;
+
+export const productUrl = (slug: string) => `${B}/products/${slug}`;
 
 export const SITE = {
   home: B,

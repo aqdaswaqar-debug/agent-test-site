@@ -10,11 +10,11 @@ export function ClosingSection({ data, product }: { data: PdpContent["closing"];
   const { addToCart, buyNow } = useBuyActions(product);
   return (
     <section aria-labelledby="closing-title" className="relative isolate flex min-h-[640px] items-center overflow-hidden px-6 py-12 lg:min-h-[780px] lg:px-20 lg:py-28">
-      <div aria-hidden className="absolute inset-0 -z-10">
-        <InViewVideo src={data.video.src} poster={data.video.poster} control="none" />
-        <div className="absolute inset-0 bg-black/30 lg:bg-black/20" />
+      <div className="absolute inset-0">
+        <InViewVideo src={data.video.src} poster={data.video.poster} buttonClassName="z-20" />
+        <div aria-hidden className="absolute inset-0 bg-black/30 lg:bg-black/20" />
       </div>
-      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-6 text-center lg:gap-8">
+      <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-6 text-center lg:gap-8">
         <h2 id="closing-title" className="font-(family-name:--font-pdp-display) text-[56px] leading-[1.08] text-white sm:text-[72px] lg:text-[112px] lg:leading-[1.1]">
           {data.title}
         </h2>
@@ -30,7 +30,7 @@ export function ClosingSection({ data, product }: { data: PdpContent["closing"];
           <button
             type="button"
             onClick={buyNow}
-            className="group/cta flex items-center justify-center gap-2 rounded-full bg-(--pdp-closing-cream) px-12 py-[18px] text-[16px] font-bold text-(--pdp-accent-strong) transition-[background-color,scale] duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:py-[22px] lg:text-[18px] [@media(hover:hover)]:hover:bg-white"
+            className="group/cta flex items-center justify-center gap-2 rounded-full bg-(--pdp-closing-cream) px-12 py-[18px] text-[16px] font-bold text-(--pdp-accent-hover) transition-[background-color,scale] duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:py-[22px] lg:text-[18px] [@media(hover:hover)]:hover:bg-white"
           >
             Buy Now
             <ArrowRight aria-hidden size={18} className="transition-[translate] duration-200 motion-safe:group-hover/cta:translate-x-1 motion-safe:group-focus-visible/cta:translate-x-1" />

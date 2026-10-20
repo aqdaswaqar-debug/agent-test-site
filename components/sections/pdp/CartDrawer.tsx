@@ -6,7 +6,7 @@ import { ShoppingBag, Trash2, X } from "lucide-react";
 import toast from "react-hot-toast";
 import { cartCount, cartSubtotal, formatINR, useCart } from "@/lib/cart-store";
 import { QtyStepper } from "./controls";
-import { BERKOWITS } from "./radiate-vitamin-c";
+import { BERKOWITS } from "./site-links";
 
 /** Slide-in mock cart (loaded on first open by LazyCartDrawer). */
 export function CartDrawer() {
