@@ -41,7 +41,7 @@ type SiteHeaderProps = {
 /** Berkowits site header: sticky, desktop nav + icons, mobile menu/search drawers (Figma 7132:454 / 3:54). */
 export function SiteHeader({ theme = "teal", activeNav, extraNav, wishlist }: SiteHeaderProps) {
   const nav = extraNav ? [...NAV, extraNav] : NAV;
-  // Six tabs: desktop nav from xl (menu drawer below), tighter links, Login button folds into the account icon until 2xl.
+  // Six tabs: desktop nav from xl (menu drawer below) with tighter links; Login/signup button as on every page.
   const wide = !!extraNav;
   const [menuOpen, setMenuOpenState] = useState(false);
   const [searchOpen, setSearchOpenState] = useState(false);
@@ -83,7 +83,7 @@ export function SiteHeader({ theme = "teal", activeNav, extraNav, wishlist }: Si
                 <a
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={cn("group relative block rounded-[6px] py-2 whitespace-nowrap text-black focus-visible:outline-2 focus-visible:outline-(--site-accent)", wide ? "px-1.5 text-[14px] xl:px-2 xl:text-[15px] 2xl:px-2.5 2xl:text-[16px]" : "px-2 text-[15px] xl:px-2.5 xl:text-[16px]")}
+                  className={cn("group relative block rounded-[6px] py-2 whitespace-nowrap text-black focus-visible:outline-2 focus-visible:outline-(--site-accent)", wide ? "px-1.5 text-[14px] 2xl:px-2.5 2xl:text-[16px]" : "px-2 text-[15px] xl:px-2.5 xl:text-[16px]")}
                 >
                   {item.label}
                   <span
@@ -104,7 +104,7 @@ export function SiteHeader({ theme = "teal", activeNav, extraNav, wishlist }: Si
           <button type="button" className={cn(iconBtn, "hidden", wide ? "xl:grid" : "lg:grid")} onClick={() => setSearchOpen(true)} aria-label="Search">
             <Search aria-hidden size={22} />
           </button>
-          <a href={SITE.login} className={cn(iconBtn, wide ? "2xl:hidden" : "xl:hidden")} aria-label="Log in or sign up">
+          <a href={SITE.login} className={cn(iconBtn, "xl:hidden")} aria-label="Log in or sign up">
             <UserRound aria-hidden size={21} />
           </a>
           <CartButton />
@@ -118,7 +118,7 @@ export function SiteHeader({ theme = "teal", activeNav, extraNav, wishlist }: Si
           )}
           <a
             href={SITE.login}
-            className={cn("ml-3 hidden shrink-0 rounded-[6px] bg-(--site-accent-strong) px-5 py-2.5 text-[17px] text-white transition-[background-color,scale] duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--site-accent) [@media(hover:hover)]:hover:bg-(--site-accent-hover)", wide ? "2xl:block" : "xl:block")}
+            className={cn("ml-3 hidden shrink-0 rounded-[6px] bg-(--site-accent-strong) px-5 py-2.5 text-[17px] text-white transition-[background-color,scale] duration-150 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--site-accent) [@media(hover:hover)]:hover:bg-(--site-accent-hover)", "xl:block")}
           >
             Login/signup
           </a>

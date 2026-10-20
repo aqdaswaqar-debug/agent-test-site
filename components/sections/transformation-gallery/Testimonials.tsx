@@ -3,6 +3,7 @@
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { Dots, Stars, useEmblaDots } from "@/components/ui/carousel-controls";
+import { focusSlide } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 import { tgContainer, tgH2, tgSection } from "./styles";
 import type { Review } from "./types";
@@ -37,11 +38,7 @@ export function Testimonials({ reviews, title = "Testimonials", startIndex = 0 }
             {reviews.map((r, i) => (
               <li key={r.name} className="min-w-0 flex-[0_0_86%] pl-4 sm:flex-[0_0_55%] lg:flex-[0_0_33.333%] lg:pl-10">
                 <article
-                  className={cn(
-                    "relative flex h-full flex-col gap-4 rounded-[20px] border-2 border-(--tg-line) bg-white p-5 lg:gap-5 lg:p-8",
-                    "after:pointer-events-none after:absolute after:inset-0 after:rounded-[inherit] after:shadow-[0_5px_31px_rgba(0,0,0,0.25)] after:transition-opacity after:duration-300",
-                    i === selected ? "after:opacity-100" : "after:opacity-0",
-                  )}
+                  className={cn("flex h-full flex-col gap-4 rounded-[20px] border-2 border-(--tg-line) bg-white p-5 lg:gap-5 lg:p-8", focusSlide(i === selected))}
                 >
                   <header className="flex items-center justify-between gap-3">
                     <h3 className="text-[16px] font-semibold text-(--tg-ink) lg:text-[18px]">{r.name}</h3>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { Play } from "lucide-react";
 import { Dots, useEmblaDots } from "@/components/ui/carousel-controls";
-import { hoverZoom } from "@/components/ui/motion";
+import { focusSlide, hoverZoom } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
 import { tgContainer, tgH2, tgSection } from "./styles";
 import type { VideoStory } from "./types";
@@ -15,7 +15,7 @@ const VideoDialog = dynamic(() => import("./VideoDialog").then((m) => m.VideoDia
 
 /** "Hear It From Them" video row (Figma 204:4273): swipeable thumbnails; each plays its YouTube video in a popup. */
 export function VideoStories({ videos, title = "Hear It From Them" }: { videos: VideoStory[]; title?: string }) {
-  const [viewportRef, embla] = useEmblaCarousel({ align: "start", containScroll: "trimSnaps" });
+  const [viewportRef, embla] = useEmblaCarousel({ align: "center", loop: videos.length > 3 });
   const { selected, count, scrollTo } = useEmblaDots(embla);
   const [playing, setPlaying] = useState<VideoStory | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -25,10 +25,11 @@ export function VideoStories({ videos, title = "Hear It From Them" }: { videos: 
         <h2 id="videos-title" className={tgH2}>
           {title}
         </h2>
-        <div ref={viewportRef} className="-mx-4 overflow-hidden px-4 py-3" role="region" aria-roledescription="carousel" aria-label="Video stories">
-          <ul className="flex gap-5 lg:gap-8">
-            {videos.map((v) => (
-              <li key={v.title} className="min-w-0 flex-[0_0_83%] sm:flex-[0_0_48%] lg:flex-[0_0_calc((100%-64px)/2.7)]">
+        <div ref={viewportRef} className="-mx-4 overflow-hidden px-4 py-6" role="region" aria-roledescription="carousel" aria-label="Video stories">
+          <ul className="flex">
+            {videos.map((v, i) => (
+              <li key={v.title} className="min-w-0 flex-[0_0_83%] px-2 sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] lg:px-4">
+                <div className={cn("rounded-[10px] lg:rounded-[16px]", focusSlide(i === selected))}>
                 <a
                   href={v.href}
                   target="_blank"
@@ -48,6 +49,7 @@ export function VideoStories({ videos, title = "Hear It From Them" }: { videos: 
                   </span>
                   <span className="sr-only">Play video: {v.title}</span>
                 </a>
+                </div>
               </li>
             ))}
           </ul>
