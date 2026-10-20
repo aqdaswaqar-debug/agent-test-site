@@ -1,0 +1,45 @@
+/*
+ * Tokens for the shared Berkowits site chrome (header, footer, menu/search dialogs, cart drawer).
+ * Set on the chrome roots and on each dialog root, because Headless UI dialogs render in a portal
+ * outside the page wrapper. Default theme is the brand teal; the PDP passes theme="orange".
+ */
+.site-chrome {
+  --site-accent: #14b8a6; /* brand teal: borders, icons, focus rings */
+  /* #14b8a6 is 2.5:1 on white; this deeper teal (5.5:1) is used for text and filled buttons. */
+  --site-accent-strong: #0f766e;
+  --site-accent-hover: #115e59;
+  --site-tint: rgb(20 184 166 / 0.12);
+  --site-peach: #99e0d6;
+  --site-cream: #f1faf8;
+
+  --site-ink: #1c1c1c;
+  --site-body: #555555;
+  --site-subtle: #6f6a64;
+  --site-icon: #374151;
+  --site-line: #eae5e0;
+  --site-line-strong: #d6d3d1;
+  --site-error: #b42318;
+
+  --site-footer: #1a1a2e;
+  --site-teal: #14b8a6;
+  --site-teal-text: #2dd4bf;
+  --site-teal-soft: rgb(20 184 166 / 0.2);
+  --site-teal-hover: #2dd4bf;
+  --site-on-teal: #0f2027;
+  --site-error-on-dark: #fda29b;
+  --site-error-line-dark: #f97066;
+}
+
+.site-chrome.site-orange {
+  --site-accent: #cd6111;
+  --site-accent-strong: #b4530c;
+  --site-accent-hover: #9a4609;
+  --site-tint: rgb(251 192 148 / 0.2);
+  --site-peach: #fbc094;
+  --site-cream: #faf6f2;
+}
+
+/* Fixed panels must never sit under the iOS home indicator. */
+.site-chrome .site-safe-bottom {
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}

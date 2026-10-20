@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { normalizeIndianMobile } from "@/lib/lead";
 import { clientKey, createRateLimiter, readJson } from "@/lib/rate-limit";
-import { CALLBACK_CITIES, CALLBACK_TREATMENTS } from "@/components/sections/pdp/site-links";
+import { CALLBACK_CITIES, CALLBACK_TREATMENTS } from "@/components/ui/site/site-links";
 
 /** Mock "Request a Free Callback" endpoint (footer form). Validates on the server; stores and logs nothing. */
 

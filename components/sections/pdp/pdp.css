@@ -49,6 +49,15 @@
   --pdp-success: #15803d;
   --pdp-error: #b42318;
 
+  /* Shared controls (stepper, stars, dots, video button) read the --site-* tokens; map them to the PDP palette. */
+  --site-ink: var(--pdp-ink);
+  --site-line-strong: var(--pdp-line-strong);
+  --site-accent: var(--pdp-accent);
+  --site-tint: var(--pdp-tint);
+  --site-accent-strong: var(--pdp-accent-strong);
+  --site-peach: var(--pdp-peach);
+  --site-dot: var(--pdp-dot);
+
   color: var(--pdp-ink);
   background: #ffffff;
 }

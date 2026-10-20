@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 type CountUpProps = { value: string; className?: string; durationMs?: number };
 
 // "38+", "₹20,000", "45+" → prefix / number / suffix. Values like "1:1" or "Free" are left static.
-const NUMERIC = /^([^\d]*)(\d[\d,]*)([^\d]*)$/;
+const NUMERIC = /^([^\d]*)(\d[\d,]*(?:\.\d+)?)([^\d]*)$/;
 
 const easeOutExpo = (t: number) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
@@ -30,7 +30,8 @@ export function CountUp({ value, className, durationMs = 1400 }: CountUpProps) {
     const [, prefix, digits, suffix] = parts;
     const target = Number(digits.replace(/,/g, ""));
     const grouped = digits.includes(",");
-    const format = (n: number) => `${prefix}${grouped ? n.toLocaleString("en-IN") : String(n)}${suffix}`;
+    const decimals = digits.split(".")[1]?.length ?? 0; // "4.9" counts 0.0 → 4.9
+    const format = (n: number) => `${prefix}${grouped ? n.toLocaleString("en-IN") : n.toFixed(decimals)}${suffix}`;
     let frame = 0;
     setDisplay(format(0));
 
@@ -41,7 +42,8 @@ export function CountUp({ value, className, durationMs = 1400 }: CountUpProps) {
         const start = performance.now();
         const tick = (now: number) => {
           const t = Math.min((now - start) / durationMs, 1);
-          setDisplay(format(Math.round(target * easeOutExpo(t))));
+          const f = 10 ** decimals;
+          setDisplay(format(Math.round(target * easeOutExpo(t) * f) / f));
           if (t < 1) frame = requestAnimationFrame(tick);
         };
         frame = requestAnimationFrame(tick);

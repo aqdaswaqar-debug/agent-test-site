@@ -1,4 +1,4 @@
-import { BERKOWITS, productUrl } from "./site-links";
+import { BERKOWITS, productUrl } from "@/components/ui/site/site-links";
 import type { PdpContent } from "./types";
 
 /**

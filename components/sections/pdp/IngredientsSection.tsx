@@ -5,7 +5,7 @@ import { hoverLift } from "@/components/ui/motion";
 import { ResponsiveText } from "@/components/ui/ResponsiveText";
 import { cn } from "@/lib/utils";
 import { Dots, useEmblaDots } from "./controls";
-import { InViewVideo } from "./InViewVideo";
+import { InViewVideo } from "@/components/ui/InViewVideo";
 import { PdpContainer, SectionHeader } from "./PdpSection";
 import type { PdpContent } from "./types";
 

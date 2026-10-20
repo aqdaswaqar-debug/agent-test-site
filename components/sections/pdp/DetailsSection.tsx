@@ -1,6 +1,6 @@
 import { hoverLift } from "@/components/ui/motion";
 import { cn } from "@/lib/utils";
-import { InViewVideo } from "./InViewVideo";
+import { InViewVideo } from "@/components/ui/InViewVideo";
 import { PdpContainer } from "./PdpSection";
 import type { PdpContent } from "./types";
 

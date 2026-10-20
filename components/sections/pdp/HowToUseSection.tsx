@@ -2,7 +2,7 @@ import { ShieldAlert } from "lucide-react";
 import { hoverLift } from "@/components/ui/motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
-import { InViewVideo } from "./InViewVideo";
+import { InViewVideo } from "@/components/ui/InViewVideo";
 import { PdpContainer, SectionHeader } from "./PdpSection";
 import type { PdpContent } from "./types";
 

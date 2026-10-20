@@ -2,7 +2,7 @@
 
 import { ArrowRight, ShoppingCart } from "lucide-react";
 import { useBuyActions } from "./BuyBox";
-import { InViewVideo } from "./InViewVideo";
+import { InViewVideo } from "@/components/ui/InViewVideo";
 import type { PdpContent } from "./types";
 
 /** Full-bleed closing banner over the orange-slice video (Figma 6968:5012 / 7215:4). Buttons use the buy-box selection. */

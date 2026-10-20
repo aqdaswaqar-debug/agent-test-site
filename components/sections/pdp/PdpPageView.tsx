@@ -1,6 +1,9 @@
 import { Suspense } from "react";
 import { Bodoni_Moda, Poppins } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+import { LazyCartDrawer } from "@/components/ui/site/LazyCartDrawer";
+import { SiteFooter } from "@/components/ui/site/SiteFooter";
+import { SiteHeader } from "@/components/ui/site/SiteHeader";
 import { cn } from "@/lib/utils";
 import { AmPmSection } from "./AmPmSection";
 import { AuthoritySection } from "./AuthoritySection";
@@ -12,20 +15,19 @@ import { DetailsSection } from "./DetailsSection";
 import { FormulaSection } from "./FormulaSection";
 import { HeroSection } from "./HeroSection";
 import { HowToUseSection } from "./HowToUseSection";
-import { LazyCartDrawer } from "./LazyCartDrawer";
 import { IngredientsSection } from "./IngredientsSection";
 import { MorningRoutineSection } from "./MorningRoutineSection";
 import { PdpFaqSection } from "./PdpFaqSection";
-import { PdpFooter } from "./PdpFooter";
-import { PdpHeader } from "./PdpHeader";
 import { RadianceTimelineSection } from "./RadianceTimelineSection";
 import { RecommendationsSection } from "./RecommendationsSection";
 import { ResultsSection } from "./ResultsSection";
 import { StickyBar } from "./StickyBar";
 import { TrustStrip } from "./TrustStrip";
 import { UgcSection } from "./UgcSection";
+import { WishlistButton } from "./WishlistButton";
 import type { PdpContent } from "./types";
 import "@/components/ui/motion.css";
+import "@/components/ui/site/site.css";
 import "./pdp.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap", variable: "--font-pdp" });
@@ -43,7 +45,7 @@ export function PdpPageView({ content }: { content: PdpContent }) {
       >
         Skip to content
       </a>
-      <PdpHeader />
+      <SiteHeader theme="orange" activeNav="Products" wishlist={<WishlistButton productName={content.product.name} className="hidden lg:grid" />} />
       <main id="main">
         <HeroSection product={content.product} />
         <TrustStrip items={content.trustStrip} />
@@ -77,10 +79,10 @@ export function PdpPageView({ content }: { content: PdpContent }) {
         </Suspense>
       </main>
       <Suspense>
-        <PdpFooter />
+        <SiteFooter />
       </Suspense>
       <StickyBar product={content.product} />
-      <LazyCartDrawer />
+      <LazyCartDrawer theme="orange" />
       <Toaster position="top-center" toastOptions={{ duration: 3000, style: { fontSize: "14px" } }} />
     </div>
   );

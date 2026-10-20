@@ -9,7 +9,7 @@ import { hoverLift, hoverZoom } from "@/components/ui/motion";
 import { ResponsiveText } from "@/components/ui/ResponsiveText";
 import { cn } from "@/lib/utils";
 import { Dots, QtyStepper, Stars, useAddToCart, useEmblaDots } from "./controls";
-import { productUrl } from "./site-links";
+import { productUrl } from "@/components/ui/site/site-links";
 import { PdpContainer, SectionHeader } from "./PdpSection";
 import type { PdpContent } from "./types";
 

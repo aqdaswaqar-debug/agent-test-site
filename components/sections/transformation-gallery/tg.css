@@ -1,0 +1,65 @@
+/*
+ * Transformation Gallery tokens (Figma "Transformaation Gallary", Design row). Scoped to .tg; no @theme edits.
+ */
+.tg {
+  --tg-teal: #14b8a6; /* Figma "CTA Color": fills, borders, lines */
+  --tg-teal-text: #0f766e; /* #14b8a6 text is 2.5:1 on white; this teal is 5.5:1 */
+  --tg-teal-hover: #2dd4bf;
+  --tg-on-teal: #0f2027; /* dark text on teal fills (white on #14b8a6 fails AA) */
+  --tg-tint: rgb(20 184 166 / 0.1);
+  --tg-mint: #7dd1b8;
+  --tg-ink: #111111;
+  --tg-body: #44403b;
+  --tg-muted: #57534d;
+  --tg-line: #cfcfcf;
+  --tg-track: #d9d9d9;
+  --tg-dot: #8a8580;
+  --tg-surface: #f1f5f4;
+  --tg-label: #6b7280; /* stat labels */
+
+  --tg-teal-deep: #245e69; /* quote accent, pill borders */
+
+  /* Shared controls (stars, dots, video button) read the --site-* tokens. */
+  --site-accent: var(--tg-teal);
+  --site-accent-strong: var(--tg-teal-text);
+  --site-peach: var(--tg-mint);
+  --site-dot: var(--tg-dot);
+
+  color: var(--tg-ink);
+  background: #ffffff;
+}
+
+.tg .tg-scroll-x {
+  scrollbar-width: none;
+}
+.tg .tg-scroll-x::-webkit-scrollbar {
+  display: none;
+}
+/* Fade the edges of horizontal rows so cut-off items read as "more to swipe". */
+.tg .tg-fade-x {
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+/* Hub hero divider draws in once (transform only). */
+@keyframes tg-line-in {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.tg .tg-line-in {
+  animation: tg-line-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) 200ms both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tg .tg-line-in { animation: none; }
+}
+
+/* Laser hero rotating headline: each new phrase slides up into the clip window. */
+@keyframes tg-swap-in {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.tg .tg-swap-in {
+  animation: tg-swap-in 400ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tg .tg-swap-in { animation: none; }
+}

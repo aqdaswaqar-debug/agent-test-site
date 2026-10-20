@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
-import { InViewVideo } from "./InViewVideo";
+import { InViewVideo } from "@/components/ui/InViewVideo";
 import { PdpContainer, SectionHeader } from "./PdpSection";
 import type { PdpContent } from "./types";
 
