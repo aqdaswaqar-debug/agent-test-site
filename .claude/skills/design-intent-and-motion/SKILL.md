@@ -25,13 +25,13 @@ Go section by section and ask: *"On a real website, how does this behave?"* Use 
 | Grey/grid box, pin, "map", "to be placed in development" | Interactive map of the business | Google Maps embed by **listing query** (`maps?q=<business, area>&output=embed`), `loading="lazy"`, `title`, map-grid background as loading state; shown on mobile too; "Get Directions" opens the same query in a new tab. Check the pin lands on the real listing (screenshot). |
 | FAQ list with all answers printed | Accordion | Headless UI Disclosure at **every** breakpoint, +/- icon (plus folds into minus), first item open, closed answers kept in the HTML (`unmount={false}`) so FAQPage schema matches the page, independent columns on desktop so opening one never stretches its neighbor. Mobile: first 5 + "View more questions". |
 | Big numbers (38+, 45+, ₹ prices, %) | Animated stats | `CountUp`: counts from 0 when scrolled in, fast then settling; server HTML and screen readers get the final value; width reserved; non-numeric values ("Free", "1:1") stay static. |
-| Progress/timeline bars | Fill-on-scroll | Bar scales from 0 (`.ls-bar`, `origin-left`) and stops at its level, one after another. |
-| Small card sitting on a big photo/card (badge, "nearest clinic") | Floating accent | `.ls-float` / `.ls-float-slow`: slow up-and-down drift (6–7.5s, 10px). |
+| Progress/timeline bars | Fill-on-scroll | Bar scales from 0 (`.ui-bar`, `origin-left`) and stops at its level, one after another. |
+| Small card sitting on a big photo/card (badge, "nearest clinic") | Floating accent | `.ui-float` / `.ui-float-slow`: slow up-and-down drift (6–7.5s, 10px). |
 | Cards, photo tiles, profile card | Hover target | `hoverLift` (lift + soft shadow on a `::after` layer) and `hoverZoom` on the image inside a clipping frame. **The card itself must not have `overflow-hidden`**, or the shadow is clipped. |
 | Rows/grids of cards, steps | Entrance | `<Reveal stagger>` with `data-reveal-item` on each item. |
 | Buttons | Clear affordance | `ButtonLink icon`: `arrow` for in-page/next step, `external` for new tab, `phone` for `tel:`. Icon nudges on hover. |
 | One tab/slide/dot shown "active" | Working tabs/carousel | Headless UI Tabs / Embla with real state, keyboard and swipe. |
-| Hero photo | First impression | `.ls-settle` slow zoom-in on load (no opacity, so LCP is not delayed) + hover lift/zoom. |
+| Hero photo | First impression | `.ui-settle` slow zoom-in on load (no opacity, so LCP is not delayed) + hover lift/zoom. |
 | Play icon on an image | Video | Lightbox or inline video, poster, `muted playsInline`, lazy. |
 | Reviews/ratings | Real reviews only | Show only real data or flag; never invent testimonials. |
 | Address, phone, prices, doctor names | Business facts | Use as given but verify they look real; sample-looking data → `TODO(content)` + gate question. |
@@ -57,7 +57,7 @@ Rules (non-negotiable):
 - `prefers-reduced-motion: reduce` turns all of it off (CSS media query + JS checks).
 - Never hide above-the-fold content waiting for JS; reveal effects arm only for content still below the fold. Never fade the LCP image.
 - Server HTML always contains the final content (numbers, answers) for SEO and no-JS users.
-- Implementation lives in: `components/ui/Reveal.tsx` (stagger), `components/ui/CountUp.tsx`, `components/ui/motion.ts` (`hoverLift`, `hoverZoom`), `components/ui/ButtonLink.tsx` (`icon`), keyframes in the page CSS (`ls-rise`, `ls-fill`, `ls-float`, `ls-settle`). Reuse them; don't add GSAP/Lenis.
+- Implementation lives in: `components/ui/Reveal.tsx` (stagger), `components/ui/CountUp.tsx`, `components/ui/motion.ts` (`hoverLift`, `hoverZoom`), `components/ui/ButtonLink.tsx` (`icon`), keyframes and classes in `components/ui/motion.css` (`ui-rise`, `ui-fill`, `ui-float`, `ui-settle`, `ui-marquee`). Reuse them; don't add GSAP/Lenis.
 
 ## 4. Human guidance gate (G-intent)
 Decide yourself, build it, and list it under **Decisions I made** when the behavior is industry standard, reversible, and has no cost, legal or data impact (everything in the tables above).

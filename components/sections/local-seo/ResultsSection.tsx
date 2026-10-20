@@ -45,7 +45,7 @@ export function ResultsSection({ data }: Props) {
                     aria-label={`Indicative progress: ${row.progress}%`}
                   >
                     {/* Fills from the left and stops at this stage's level when the list scrolls in. */}
-                    <div className={`ls-bar h-full origin-left rounded-[3px] bg-(--ls-mint) ${PROGRESS_WIDTH[row.progress] ?? "w-full"}`} />
+                    <div className={`ui-bar h-full origin-left rounded-[3px] bg-(--ls-mint) ${PROGRESS_WIDTH[row.progress] ?? "w-full"}`} />
                   </div>
                 </div>
               </li>

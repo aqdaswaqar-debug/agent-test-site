@@ -8,7 +8,7 @@ type RevealProps = {
   className?: string;
   /**
    * true = the wrapper stays put and its `[data-reveal-item]` children rise in one after another
-   * (cards, steps, bars). Their keyframes live in local-seo.css.
+   * (cards, steps, bars). Their keyframes live in components/ui/motion.css.
    */
   stagger?: boolean;
 };

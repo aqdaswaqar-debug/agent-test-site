@@ -14,6 +14,7 @@ import { TreatmentsSection } from "./TreatmentsSection";
 import { WhoItIsForSection } from "./WhoItIsForSection";
 import { WhySection } from "./WhySection";
 import type { LocalSeoPage } from "./types";
+import "@/components/ui/motion.css";
 import "./local-seo.css";
 
 // Brand font (Figma: Poppins 400/500/600). Loaded here so the shared root layout stays untouched.

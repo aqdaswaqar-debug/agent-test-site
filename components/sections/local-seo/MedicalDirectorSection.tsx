@@ -49,7 +49,7 @@ export function MedicalDirectorSection({ data }: Props) {
                   </figcaption>
                 </figure>
                 {/* Badge overlaps the photo's bottom-right corner on desktop. Ink on mint for contrast. */}
-                <div className="ls-float-slow absolute top-[302px] right-5 hidden w-[173px] flex-col items-center rounded-[22px] bg-(--ls-mint) px-6 py-3 text-(--ls-ink) shadow-[0_14px_11px_rgba(0,0,0,0.1),0_6px_4px_rgba(0,0,0,0.1)] lg:flex">
+                <div className="ui-float-slow absolute top-[302px] right-5 hidden w-[173px] flex-col items-center rounded-[22px] bg-(--ls-mint) px-6 py-3 text-(--ls-ink) shadow-[0_14px_11px_rgba(0,0,0,0.1),0_6px_4px_rgba(0,0,0,0.1)] lg:flex">
                   <span className="text-[26px] leading-10 font-semibold">{data.badgeTitle}</span>
                   <span className="text-[17px] leading-[23px] font-medium">{data.badgeSubtitle}</span>
                 </div>

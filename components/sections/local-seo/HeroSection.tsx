@@ -42,10 +42,10 @@ export function HeroSection({ hero, clinic }: HeroSectionProps) {
               fill
               priority
               sizes="(min-width: 1024px) 520px, (min-width: 768px) calc(100vw - 80px), calc(100vw - 48px)"
-              className={cn("ls-settle object-cover", hoverZoom)}
+              className={cn("ui-settle object-cover", hoverZoom)}
             />
           </div>
-          <div className="ls-float absolute bottom-6 left-6 hidden flex-col gap-1.5 rounded-[14px] bg-white px-5 py-4 leading-[1.65] shadow-[0_8px_24px_rgba(0,0,0,0.1)] lg:flex">
+          <div className="ui-float absolute bottom-6 left-6 hidden flex-col gap-1.5 rounded-[14px] bg-white px-5 py-4 leading-[1.65] shadow-[0_8px_24px_rgba(0,0,0,0.1)] lg:flex">
             <p className="text-[12px] font-medium text-(--ls-muted)">{hero.cardLabel}</p>
             <p className="text-[16px] font-semibold text-(--ls-ink)">{hero.cardTitle}</p>
             <p className="text-[13px] text-(--ls-muted)">{hero.cardSubtitle}</p>
