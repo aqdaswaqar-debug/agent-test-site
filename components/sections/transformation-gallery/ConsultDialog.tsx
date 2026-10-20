@@ -1,34 +1,31 @@
 "use client";
 
-import { CloseButton, Dialog, DialogPanel, DialogTitle, Description } from "@headlessui/react";
-import { PhoneCall, X } from "lucide-react";
-import { CallbackForm } from "@/components/ui/site/FooterClient";
+import { CloseButton, Description, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { X } from "lucide-react";
+import { BookingForm } from "@/components/ui/site/BookingForm";
 import { siteThemeClass } from "@/components/ui/site/site-styles";
 import { cn } from "@/lib/utils";
 import { tgPoppins } from "./fonts";
 
-/** "Book Consultation" popup: the same lead form as the footer (validation, honeypot, mock API, toasts). */
+/** "Book A Consultation Now!" popup, matching the berkowits.com booking modal (blurred backdrop, white card). */
 export function ConsultDialog({ open, onClose, treatment }: { open: boolean; onClose: () => void; treatment?: string }) {
   return (
     <Dialog open={open} onClose={onClose} className={cn(siteThemeClass(), tgPoppins.className, "relative z-60")}>
-      <div aria-hidden className="fixed inset-0 bg-black/55" />
-      <div className="fixed inset-0 grid place-items-end overflow-y-auto sm:place-items-center sm:p-6">
-        <DialogPanel className="w-full max-w-[560px] rounded-t-[20px] bg-(--site-footer) p-5 text-white shadow-2xl sm:rounded-[20px] sm:p-8">
-          <div className="mb-5 flex items-start justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-[12px] bg-(--site-teal-soft) text-(--site-teal-text)">
-                <PhoneCall aria-hidden size={18} />
-              </span>
-              <div>
-                <DialogTitle className="text-[18px] font-semibold">Book a Free Consultation</DialogTitle>
-                <Description className="text-[13px] text-white/60">Our expert calls you back within 24 hours.</Description>
-              </div>
+      <div aria-hidden className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
+      <div className="fixed inset-0 grid place-items-center overflow-y-auto p-3 sm:p-6">
+        <DialogPanel className="w-full max-w-[512px] rounded-[24px] bg-white shadow-2xl">
+          <div className="flex items-start justify-between gap-4 px-5 pt-6 pb-4 sm:px-6">
+            <div className="flex flex-col gap-2">
+              <DialogTitle className="text-[24px] leading-tight font-bold tracking-[-0.02em] text-(--site-ink) sm:text-[30px]">Book A Consultation Now!</DialogTitle>
+              <Description className="text-[14px] leading-[1.6] text-(--site-body) sm:text-[15px]">
+                Free, no-obligation consultation with a Berkowits hair &amp; skin expert. Takes less than a minute.
+              </Description>
             </div>
-            <CloseButton aria-label="Close" className="grid size-10 shrink-0 place-items-center rounded-full bg-white/8 focus-visible:outline-2 focus-visible:outline-(--site-teal) [@media(hover:hover)]:hover:bg-white/15">
-              <X aria-hidden size={18} />
+            <CloseButton aria-label="Close" className="-mt-1 -mr-2 grid size-10 shrink-0 place-items-center rounded-full text-(--site-subtle) focus-visible:outline-2 focus-visible:outline-(--site-accent) [@media(hover:hover)]:hover:bg-(--site-tint)">
+              <X aria-hidden size={20} />
             </CloseButton>
           </div>
-          <CallbackForm defaultTreatment={treatment} layout="stacked" onSuccess={onClose} />
+          <BookingForm treatment={treatment} onSuccess={onClose} />
         </DialogPanel>
       </div>
     </Dialog>

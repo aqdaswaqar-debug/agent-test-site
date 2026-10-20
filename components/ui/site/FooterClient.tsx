@@ -37,15 +37,8 @@ function Select({ id, value, onChange, options, placeholder, invalid, describedB
   );
 }
 
-type CallbackFormProps = {
-  /** Preselects the page's treatment (e.g. on a treatment gallery page). */
-  defaultTreatment?: string;
-  /** "row" = footer strip (5 columns on desktop); "stacked" = popup (2 columns). */
-  layout?: "row" | "stacked";
-  onSuccess?: () => void;
-};
-
-export function CallbackForm({ defaultTreatment = "", layout = "row", onSuccess }: CallbackFormProps) {
+/** defaultTreatment preselects the page's treatment (e.g. on a treatment gallery page). */
+export function CallbackForm({ defaultTreatment = "" }: { defaultTreatment?: string }) {
   const id = useId();
   const empty = { name: "", phone: "", treatment: defaultTreatment, city: "", company: "" };
   const [values, setValues] = useState(empty);
@@ -72,7 +65,6 @@ export function CallbackForm({ defaultTreatment = "", layout = "row", onSuccess 
       if (data.ok) {
         toast.success("Thank you! Our expert will call you back within 24 hours.");
         setValues(empty);
-        onSuccess?.();
       } else if (data.errors) setErrors(data.errors);
       else toast.error(data.message ?? "Something went wrong. Please try again.");
     } catch {
@@ -90,7 +82,7 @@ export function CallbackForm({ defaultTreatment = "", layout = "row", onSuccess 
     ) : null;
 
   return (
-    <form onSubmit={submit} noValidate aria-label="Request a free callback" className={cn("grid gap-3 sm:grid-cols-2", layout === "row" && "lg:grid-cols-[repeat(4,minmax(0,1fr))_220px] lg:items-start")}>
+    <form onSubmit={submit} noValidate aria-label="Request a free callback" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[repeat(4,minmax(0,1fr))_220px] lg:items-start">
       <div className="flex flex-col gap-1">
         <label htmlFor={`${id}-name`} className="text-[12px] font-medium text-white/60">Name</label>
         <input id={`${id}-name`} autoComplete="name" value={values.name} onChange={(e) => set("name")(e.target.value)} placeholder="Full name" aria-invalid={!!errors.name || undefined} aria-describedby={errors.name ? `${id}-name-err` : undefined} className={field} />
@@ -116,7 +108,7 @@ export function CallbackForm({ defaultTreatment = "", layout = "row", onSuccess 
       <button
         type="submit"
         disabled={busy}
-        className={cn(layout === "row" && "lg:col-span-1 lg:mt-5", "flex h-10 items-center justify-center gap-2 rounded-[14px] bg-(--site-teal) text-[13px] font-semibold text-(--site-on-teal) shadow-[0_4px_8px_rgba(125,209,184,0.25)] transition-[background-color,scale] active:scale-[0.98] disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--site-teal) sm:col-span-2 [@media(hover:hover)]:hover:bg-(--site-teal-hover)")}
+        className={cn("flex h-10 items-center justify-center gap-2 rounded-[14px] bg-(--site-teal) text-[13px] font-semibold text-(--site-on-teal) shadow-[0_4px_8px_rgba(125,209,184,0.25)] transition-[background-color,scale] active:scale-[0.98] disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--site-teal) sm:col-span-2 lg:col-span-1 lg:mt-5 [@media(hover:hover)]:hover:bg-(--site-teal-hover)")}
       >
         {busy ? <Loader2 aria-hidden size={14} className="animate-spin" /> : <PhoneCall aria-hidden size={14} />}
         Request Callback

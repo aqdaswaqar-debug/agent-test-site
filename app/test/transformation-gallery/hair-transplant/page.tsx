@@ -30,7 +30,7 @@ export default function HairTransplantGalleryPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(galleryBreadcrumbs({ slug: SLUG, name: category.label })) }} />
-      <GalleryShell treatment={category.treatment}>
+      <GalleryShell category={category}>
         <HtHero />
         <StatsStrip stats={DEFAULT_STATS} />
         <WhoItIsFor />

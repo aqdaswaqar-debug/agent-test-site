@@ -63,3 +63,22 @@
 @media (prefers-reduced-motion: reduce) {
   .tg .tg-swap-in { animation: none; }
 }
+
+/* Stats marquee: two identical rows move by half the track width, so the loop is seamless. */
+@keyframes tg-marquee {
+  to { transform: translateX(-50%); }
+}
+.tg .tg-marquee {
+  animation: tg-marquee 30s linear infinite;
+}
+.tg .tg-marquee-wrap:hover .tg-marquee,
+.tg .tg-marquee-wrap:focus-within .tg-marquee,
+.tg .tg-marquee[data-paused] {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tg .tg-marquee { animation: none; }
+  .tg .tg-marquee > ul[aria-hidden] { display: none; }
+  .tg .tg-marquee-wrap { overflow-x: auto; }
+  .tg .tg-marquee-toggle { display: none; }
+}

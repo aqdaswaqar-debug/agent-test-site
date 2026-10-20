@@ -21,7 +21,7 @@ export default function HairLossTreatmentsGalleryPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(galleryBreadcrumbs({ slug: SLUG, name: PAGE_NAME })) }} />
-      <GalleryShell treatment={category.treatment}>
+      <GalleryShell category={category}>
         <HairLossHero />
         <StatsStrip stats={STATS} />
         <RegrowthResults />

@@ -17,7 +17,9 @@ export const SITE = {
   login: `${B}/`,
 };
 
-export const NAV = [
+export type NavItem = { label: string; href: string };
+
+export const NAV: NavItem[] = [
   { label: "AI Tools", href: `${B}/ai-tools` },
   { label: "Products", href: `${B}/collections` },
   { label: "Concerns", href: `${B}/concerns` },
@@ -87,3 +89,6 @@ export const LEGAL = [
 export const CALLBACK_TREATMENTS = ["Hair transplant", "Hair replacement", "Hair loss", "Laser hair reduction", "Skin treatment", "Dandruff & scalp", "Acne & scars", "Pigmentation", "Skin brightening", "Anti-ageing", "Other"];
 /** The 18 clinic cities from the "Nationwide Presence" block, plus Delhi NCR and Other. */
 export const CALLBACK_CITIES = ["Delhi NCR", "Bengaluru", "Delhi", "Gurugram", "Faridabad", "Ghaziabad", "Noida", "Kolkata", "Ahmedabad", "Mumbai", "Ludhiana", "Bhubaneswar", "Raipur", "Pune", "Indore", "Bhopal", "Nagpur", "Patna", "Hyderabad", "Other"];
+
+/** "Book A Consultation Now!" popup cities, exactly as on berkowits.com (collected 20 Oct 2026). */
+export const BOOKING_CITIES = ["Ahmedabad", "Bangalore", "Bhopal", "Bhubaneswar", "Delhi", "Faridabad", "Ghaziabad", "Gurgaon", "Hyderabad", "Indore", "Kolkata", "Mumbai", "Ludhiana", "Nagpur", "Nashik", "Noida", "Patna", "Pune", "Raipur"];

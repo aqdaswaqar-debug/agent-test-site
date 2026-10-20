@@ -39,10 +39,8 @@ const figmaPairs = (slug: string, title: string, cards: number[]): ResultPair[] 
 
 /**
  * The 9 galleries in Figma order. User decision: show Figma's full set, zip file where the zip has the photo,
- * Figma render otherwise. TODO(legal): confirm the Figma-only photos (Botox 3–6, Chemical Peel 2/5/6,
- * IV Glutathione 1–6) are Berkowits patients with publication consent; several look like stock.
- * Chemical Peel cards 3 and 4 are left out: they carry other clinics' marks ("Obsidian Skin", "DERMA"), so they
- * are another clinic's results and cannot be shown as Berkowits results. TODO(content): replacement pairs.
+ * Figma render otherwise (Figma-only photos approved by Berkowits).
+ * Chemical Peel cards 3 and 4 are not used: their photos carry third-party watermarks. No placeholders.
  */
 const treatment = (slug: string, title: string, pairs: ResultPair[]): Treatment => ({ slug, title, label: title, pairs });
 const zip = (section: number, indexes: number[], title: string) => zipPairs(SLUG, section, indexes, (i) => `${title} result ${i}`);

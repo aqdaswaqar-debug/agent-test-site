@@ -19,6 +19,10 @@
   --site-line: #eae5e0;
   --site-line-strong: #d6d3d1;
   --site-error: #b42318;
+  --site-error-line: #ef4444;
+  --site-error-soft: #fef2f2;
+  --site-error-soft-line: #fecaca;
+  --site-field: #e5e7eb; /* booking form input border */
 
   --site-footer: #1a1a2e;
   --site-teal: #14b8a6;

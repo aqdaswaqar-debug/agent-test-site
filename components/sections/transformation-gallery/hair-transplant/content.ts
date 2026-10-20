@@ -13,7 +13,8 @@ export const HERO = {
   body: "Powered by MaxGrow FUE+, our advanced extraction protocol engineered for higher graft survival, ultra-dense packing and faster healing.",
   cta: "Book Consultation",
   // TODO(content): the zip photo is 842px wide with a white wash baked in; replace with the raw surgeon photo (≥3456w + portrait crop).
-  image: { src: `${IMG}/hero-section-image-1.webp`, alt: "Berkowits surgeon wearing magnifying loupes during a hair transplant", width: 842, height: 352 } satisfies Img,
+  // Clean photo exported from the Figma frame (200:4091); the zip copy is 842px with a white wash baked in.
+  image: { src: `${IMG}/hero-surgeon.webp`, alt: "Berkowits surgeon wearing magnifying loupes during a hair transplant", width: 1712, height: 784 } satisfies Img,
   // TODO(content): the zip badge art reads "WRITTEN GURANTEE"; replace with the corrected badge (SVG ideal).
   stamp: { src: `${IMG}/hero-section-stamp-image.webp`, alt: "MaxGrow FUE+ hair transplant technique with 1 year written guarantee", width: 309, height: 241 } satisfies Img,
 };

@@ -22,7 +22,7 @@ export default function HairReplacementGalleryPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(galleryBreadcrumbs({ slug: SLUG, name: PAGE_NAME })) }} />
-      <GalleryShell treatment={category.treatment}>
+      <GalleryShell category={category}>
         <HairReplacementHero />
         <StatsStrip stats={STATS} />
         <WhoItIsFor />

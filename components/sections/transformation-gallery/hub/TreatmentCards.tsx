@@ -7,18 +7,29 @@ import { cn } from "@/lib/utils";
 import { CATEGORIES, galleryUrl } from "../shared-data";
 import { tgContainer, tgH2, tgSection } from "../styles";
 
-/** "Witness The Transformation" (Figma 191:181): the hub's navigation to the 5 treatment galleries (3 + 2 centred). */
-export function TreatmentCards() {
+type TreatmentCardsProps = {
+  /** Leave out the current page's category ("Explore more" row on a treatment page). */
+  exclude?: string;
+  title?: string;
+};
+
+/**
+ * "Witness The Transformation" (Figma 191:181): the hub's navigation to the 5 treatment galleries (3 + 2 centred).
+ * Treatment pages reuse it with `exclude` as a 4-up "explore more" row, so every page links to the others.
+ */
+export function TreatmentCards({ exclude, title = "Witness The Transformation" }: TreatmentCardsProps) {
+  const items = CATEGORIES.filter((c) => c.slug !== exclude);
+  const four = items.length === 4;
   return (
     <section aria-labelledby="treatments-title" className={tgSection}>
       <div className={cn(tgContainer, "flex flex-col gap-8 lg:gap-16")}>
         <h2 id="treatments-title" className={tgH2}>
-          Witness The Transformation
+          {title}
         </h2>
         <Reveal stagger>
-          <ul className="mx-auto flex max-w-[1330px] flex-wrap justify-center gap-x-6 gap-y-8 lg:gap-x-16 lg:gap-y-16">
-            {CATEGORIES.map((c) => (
-              <li key={c.slug} data-reveal-item className="w-full max-w-[400px] sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-128px)/3)]">
+          <ul className={cn("mx-auto flex max-w-[1330px] flex-wrap justify-center gap-x-6 gap-y-8 lg:gap-x-16 lg:gap-y-16", four && "lg:gap-x-8")}>
+            {items.map((c) => (
+              <li key={c.slug} data-reveal-item className={cn("w-full max-w-[400px] sm:w-[calc((100%-24px)/2)]", four ? "lg:w-[calc((100%-96px)/4)]" : "lg:w-[calc((100%-128px)/3)]")}>
                 <Link
                   href={galleryUrl(c.slug)}
                   className="group flex flex-col items-center gap-4 rounded-[12px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--tg-teal-text) lg:gap-7"

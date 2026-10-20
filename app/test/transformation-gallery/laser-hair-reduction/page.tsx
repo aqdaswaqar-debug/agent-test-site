@@ -39,7 +39,7 @@ export default function LaserHairReductionGalleryPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(galleryBreadcrumbs({ slug: SLUG, name: NAME })) }} />
-      <GalleryShell treatment={category.treatment}>
+      <GalleryShell category={category}>
         <PhotoHero
           image={HERO_IMAGE}
           flip

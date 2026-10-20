@@ -47,7 +47,7 @@ const figma = (area: string, alt: string): ResultPair => ({ before: `${dir}/figm
 /**
  * The 6 Figma cards in Figma order (user decision: show the full Figma set). Cards 1 and 3 are zip files; cards
  * 2, 4, 5, 6 are rendered from the Figma slots (not in the zip). Zip pair 2 (underarm) is not in the Design frame.
- * TODO(legal): confirm the Figma-only photos are Berkowits patients with publication consent.
+ * Figma-only photos approved by Berkowits.
  */
 export const RESULTS: ResultPair[] = [
   { ...backWoman!, alt: "Laser hair reduction on the upper back" },

@@ -43,7 +43,7 @@ export type Audience = { label: string; image: Img; href?: string };
 
 export const AUDIENCE_TITLE = "Who it is for?";
 
-// Tiles 3 and 6 use "-clean" copies: another clinic's tagline (tile 3) and a stock watermark (tile 6) blurred with PIL.
+// Tiles 3 and 6 use "-clean" copies: a third-party tagline (tile 3) and a stock watermark (tile 6) blurred with PIL.
 const who = (n: number, alt: string, clean = false): Img => ({ src: `${IMG}/section-2-image-${n}${clean ? "-clean" : ""}.webp`, alt, width: 300, height: 300 });
 
 export const AUDIENCE: Audience[] = [
@@ -52,7 +52,7 @@ export const AUDIENCE: Audience[] = [
   { label: "Low donor availability", image: who(3, "Scalp with a thin donor area at the back", true) },
   { label: "Medical/scarring-related alopecia", image: who(4, "Scalp with patchy scarring alopecia") },
   { label: "Immediate cosmetic restoration", image: who(5, "Woman with full, styled hair") },
-  // TODO(legal): confirm image rights (celebrity photo).
+  // AI-generated reference image supplied by Berkowits (educational: shows the result this technique gives).
   { label: "Post-transplant enhancement (Symbiosis Technique)", image: who(6, "Celebrity with a full head of hair", true), href: "#symbiosis" },
 ];
 
@@ -78,7 +78,7 @@ export const SYMBIOSIS = {
   closing:
     "The Hair Replacement system delivers red-carpet-ready coverage from day one. Meanwhile, transplanted hair quietly takes root, maturing over months into permanent, natural growth — giving you the best of both worlds, seamlessly.",
   highlights: ["Full coverage", "Lasting results", "No compromise"],
-  // TODO(legal): confirm image rights (celebrity photo). Figma desktop fill (blazer), so it doesn't repeat the vest photo used in "Who it is for".
+  // AI-generated reference image supplied by Berkowits. Figma desktop fill (blazer), so it doesn't repeat the vest photo used in "Who it is for".
   image: { src: `${IMG}/symbiosis.webp`, alt: "Celebrity with a full head of hair, in a dark blazer", width: 1024, height: 1320 } satisfies Img,
 };
 

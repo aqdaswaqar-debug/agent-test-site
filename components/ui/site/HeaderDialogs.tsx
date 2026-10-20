@@ -5,7 +5,7 @@ import { CloseButton, Dialog, DialogPanel, DialogTitle } from "@headlessui/react
 import { Phone, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { iconBtn, siteThemeClass, type SiteTheme } from "./site-styles";
-import { BERKOWITS, NAV, SITE } from "./site-links";
+import { BERKOWITS, NAV, SITE, type NavItem } from "./site-links";
 
 /* Loaded on first open only (next/dynamic), so Headless UI's dialog code stays out of the first page load. */
 
@@ -80,9 +80,9 @@ export function SearchDialog({ open, onClose, theme }: DialogProps) {
   );
 }
 
-export function MenuDrawer({ open, onClose, theme, activeNav }: DialogProps & { activeNav?: string }) {
+export function MenuDrawer({ open, onClose, theme, activeNav, nav = NAV }: DialogProps & { activeNav?: string; nav?: NavItem[] }) {
   return (
-    <Dialog open={open} onClose={onClose} className={cn(siteThemeClass(theme), "relative z-60 lg:hidden")}>
+    <Dialog open={open} onClose={onClose} className={cn(siteThemeClass(theme), "relative z-60", nav.length > NAV.length ? "xl:hidden" : "lg:hidden")}>
       <div aria-hidden className="fixed inset-0 bg-black/30" />
       <DialogPanel className="fixed inset-y-0 left-0 flex w-[min(320px,86vw)] flex-col gap-6 bg-white p-5 shadow-xl">
         <div className="flex items-center justify-between">
@@ -93,7 +93,7 @@ export function MenuDrawer({ open, onClose, theme, activeNav }: DialogProps & { 
         </div>
         <nav aria-label="Main">
           <ul className="flex flex-col">
-            {NAV.map((item) => {
+            {nav.map((item) => {
               const active = item.label === activeNav;
               return (
                 <li key={item.label}>
