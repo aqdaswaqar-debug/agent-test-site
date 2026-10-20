@@ -24,7 +24,7 @@ Triggers: design change → design-interpreter (not for S with one obvious value
 
 ## 3. Pipeline
 1. **G0 Intake:** Figma desktop + mobile, page type, URL, data, must-haves, don'ts. Ask for missing inputs once, in one batch.
-2. **G1 Brief:** design-interpreter returns the build brief; every decision labeled Confirmed / Strongly inferred / Needs designer input.
+2. **G1 Brief:** design-interpreter returns the build brief; every decision labeled Confirmed / Strongly inferred / Needs designer input. The brief must include the **design-intent pass** (`.claude/skills/design-intent-and-motion`): what the page is for, every placeholder/static frame turned into its real feature (map, accordion, count-up, carousel…), the motion plan per section, and the **G-intent human guidance gate** questions.
 3. **G2 Human check (L/XL):** send brief summary + question batch (each question with a default and impact). Build only unblocked parts on defaults meanwhile; XL builds nothing.
 4. **G3 Build:** frontend-builder, mobile-first, section by section; eslint + tsc on changed files after each.
 5. **G4 Review:** code-reviewer until zero required fixes; max 3 rounds; re-check changed lines only.
@@ -51,7 +51,8 @@ Record every gate result in the report — process discipline is scored.
 - Semantic HTML, one `h1`; `button` vs `Link`; Headless UI for disclosure/menu/dialog/tabs.
 - One library per job: Embla, lucide-react, Framer Motion/CSS, Headless UI, react-hot-toast, native fetch.
 - Layout from messy Figma: flex/grid inferred, 4/8px scale, fluid widths in a max-width container, tablet interpolated (1 → 2 → 3/4 cols, stack below `lg`, `clamp()` type), all states added.
-- Motion: transform/opacity only; `focus-visible` twin for every hover; hover inside `@media (hover: hover)`; reduced motion respected.
+- Motion: transform/opacity only; `focus-visible` twin for every hover; hover inside `@media (hover: hover)`; reduced motion respected. Every section gets its house-default motion (see design-intent-and-motion §3): staggered card reveal, hover lift + shadow, count-up stats, bar fill, floating badges, accordion morph, button icons.
+- Build what the design means, not only what it shows: placeholders become real features; ask at G-intent when it is not your call.
 
 ## 6. Page playbooks (from docs/MAIN-SOP.md Section 11)
 - **SEO / service page:** `generateMetadata` (title, description, canonical, Open Graph, Twitter); JSON-LD as fits (FAQPage, BreadcrumbList, Service/LocalBusiness); static rendering; content in HTML; descriptive alt text; internal links via `next/link`; sitemap updated if present.

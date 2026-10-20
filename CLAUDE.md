@@ -49,3 +49,5 @@ docs/MAIN-SOP.md is the main SOP: use it for page playbooks (Section 11) and the
 
 ## Lessons
 <!-- Format: [Scope] Lesson. (Source, YYYY-MM) -->
+- [Local SEO page] Figma placeholders are instructions to build the real thing: map box → interactive Google Maps embed, static FAQ → +/- accordion on all screens. Run design-intent-and-motion before building. (Tester feedback, 2026-10)
+- [Motion] Every section needs its house motion: hover lift + shadow on cards/images, count-up stats, bar fill to value, slow float on overlapping badges, arrows on CTA buttons. A card with overflow-hidden clips its hover shadow. (Tester feedback, 2026-10)
