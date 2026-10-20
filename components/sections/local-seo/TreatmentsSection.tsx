@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { ResponsiveText } from "@/components/ui/ResponsiveText";
+import { hoverLift, hoverZoom } from "@/components/ui/motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow, SectionTitle } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
@@ -12,14 +13,21 @@ type Grow = LocalSeoPage["treatments"]["grow"];
 
 function TreatmentCard({ item }: { item: Treatment }) {
   return (
-    <li className="group flex items-center gap-3.5 border-b border-(--ls-border) py-3 pr-4 pl-3 last:border-b-0 md:flex-col md:items-stretch md:gap-0 md:overflow-hidden md:rounded-[18px] md:border-b-0 md:bg-white md:p-0 md:relative md:transition-transform md:duration-200 md:ease-out motion-reduce:transition-none md:[@media(hover:hover)]:hover:-translate-y-1 after:pointer-events-none after:absolute after:inset-0 after:rounded-[18px] after:opacity-0 after:shadow-[0_12px_28px_rgba(22,48,43,0.10)] after:transition-opacity after:duration-200 motion-reduce:after:transition-none md:[@media(hover:hover)]:hover:after:opacity-100">
-      <div className="relative size-[76px] shrink-0 overflow-hidden rounded-[12px] md:h-[210px] md:w-full md:rounded-none">
+    // No overflow-hidden on the card: it would clip the hover shadow. The image frame clips instead.
+    <li
+      data-reveal-item
+      className={cn(
+        "group flex items-center gap-3.5 border-b border-(--ls-border) py-3 pr-4 pl-3 last:border-b-0 md:flex-col md:items-stretch md:gap-0 md:rounded-[18px] md:border-b-0 md:bg-white md:p-0",
+        hoverLift,
+      )}
+    >
+      <div className="relative size-[76px] shrink-0 overflow-hidden rounded-[12px] md:h-[210px] md:w-full md:rounded-b-none md:rounded-t-[18px]">
         <Image
           src={item.image.src}
           alt={item.image.alt}
           fill
           sizes="(min-width: 1024px) 384px, (min-width: 768px) 50vw, 76px"
-          className="object-cover transition-transform duration-300 ease-out motion-reduce:transition-none md:[@media(hover:hover)]:group-hover:scale-[1.04]"
+          className={cn("object-cover", hoverZoom)}
         />
       </div>
       <div className="flex flex-1 flex-col gap-0.5 md:gap-2 md:px-6 md:pt-5 md:pb-6">
@@ -45,7 +53,7 @@ function GrowPanel({ grow, className }: { grow: Grow; className?: string }) {
       <p className="text-[13px] leading-[1.55] text-(--ls-forest-text) lg:text-[14px] lg:leading-[1.65]">
         <ResponsiveText desktop={grow.body} mobile={grow.mobileBody} />
       </p>
-      <ButtonLink href={grow.href} target="_blank" variant="inverse" size="sm" className="w-full lg:w-auto lg:self-start">
+      <ButtonLink href={grow.href} target="_blank" variant="inverse" icon="external" size="sm" className="w-full lg:w-auto lg:self-start">
         {grow.cta}
       </ButtonLink>
     </aside>
@@ -77,13 +85,13 @@ export function TreatmentsSection({ data }: Props) {
               </h3>
               <p className="hidden text-[14px] leading-[1.65] text-(--ls-muted) lg:block">{group.note}</p>
             </div>
-            <Reveal>
+            <Reveal stagger>
               <ul className="overflow-hidden rounded-[16px] bg-white md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:rounded-none md:bg-transparent lg:grid-cols-3">
                 {group.items.map((item) => (
                   <TreatmentCard key={item.name} item={item} />
                 ))}
                 {g === 0 ? (
-                  <li className="hidden md:flex">
+                  <li data-reveal-item className="hidden md:flex">
                     <GrowPanel grow={data.grow} className="w-full" />
                   </li>
                 ) : null}

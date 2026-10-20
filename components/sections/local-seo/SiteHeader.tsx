@@ -31,7 +31,7 @@ export function SiteHeader({ nav }: SiteHeaderProps) {
           </ul>
         </nav>
 
-        <ButtonLink href="#book" size="sm" className="hidden px-6 py-2 leading-[22px] lg:inline-flex">
+        <ButtonLink href="#book" size="sm" icon="arrow" className="hidden px-6 py-2 leading-[22px] lg:inline-flex">
           Book Free Consultation
         </ButtonLink>
 

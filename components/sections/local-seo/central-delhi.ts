@@ -3,6 +3,8 @@ import type { LocalSeoPage } from "./types";
 const IMG = "/images/local-seo";
 
 /** P01 · Central Delhi (Berkowits Bengali Market). Copy is taken verbatim from Figma frames 39:237 / 44:171. */
+const MAP_QUERY = "Berkowits Hair & Skin Clinic, Bengali Market, New Delhi";
+
 export const centralDelhi: LocalSeoPage = {
   slug: "hair-loss-treatment-central-delhi",
   areaName: "Central Delhi",
@@ -30,8 +32,10 @@ export const centralDelhi: LocalSeoPage = {
     closes: "19:00",
     nearestMetro: "Barakhamba Road (Blue Line)",
     metroShort: "Barakhamba Road",
-    mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Berkowits+12+Central+Lane+Bengali+Market+New+Delhi+110001",
+    // Resolves to the "Berkowits Hair & Skin Clinic" Google listing at Bengali Market (checked by screenshot).
+    // TODO(content): the street address above comes from Figma and doesn't match that listing; confirm the real one.
+    mapQuery: MAP_QUERY,
+    mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_QUERY)}`,
   },
   nav: [
     { label: "Who it's for", href: "#who-it-is-for" },
@@ -209,7 +213,7 @@ export const centralDelhi: LocalSeoPage = {
       title: "Start with an online AI hair analysis",
       body: "Take the Berkowits GROW hair analysis from home, then book your visit when you are ready.",
       mobileBody: "Take the Berkowits GROW hair analysis from home.",
-      cta: "Take the online hair analysis →",
+      cta: "Take the online hair analysis",
       // TODO(content): confirm the GROW hair analysis URL; links to the Berkowits site for now.
       href: "https://berkowits.com",
     },

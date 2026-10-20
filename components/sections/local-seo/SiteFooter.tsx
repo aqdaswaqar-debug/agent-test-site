@@ -54,7 +54,7 @@ export function SiteFooter({ clinic, disclaimer }: SiteFooterProps) {
           </ul>
         </div>
         <div className="flex w-full flex-col items-center gap-3 p-4 lg:hidden">
-          <ButtonLink href="#book" size="sm" className="w-full py-4 leading-[22px]">
+          <ButtonLink href="#book" size="sm" icon="arrow" className="w-full py-4 leading-[22px]">
             Book Free Consultation
           </ButtonLink>
           <a href={`tel:${clinic.phoneTel}`} className={footerLink}>

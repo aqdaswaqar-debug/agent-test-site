@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
+import { hoverZoom } from "@/components/ui/motion";
 import { Reveal } from "@/components/ui/Reveal";
+import { cn } from "@/lib/utils";
 import { Eyebrow, SectionTitle } from "@/components/ui/SectionHeading";
 import { ClinicCarousel } from "./ClinicCarousel";
 import type { LocalSeoPage } from "./types";
@@ -20,7 +22,7 @@ export function ClinicPhotosSection({ data }: Props) {
               {data.title}
             </SectionTitle>
           </div>
-          <ButtonLink href="#book-form" className="hidden shrink-0 md:inline-flex">
+          <ButtonLink href="#book-form" icon="arrow" className="hidden shrink-0 md:inline-flex">
             {data.cta}
           </ButtonLink>
         </div>
@@ -31,20 +33,20 @@ export function ClinicPhotosSection({ data }: Props) {
 
         <Reveal className="hidden md:block">
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-[560px_1fr] lg:gap-5">
-            <div className="relative h-[320px] overflow-hidden rounded-[16px] lg:h-[420px]">
-              <Image src={main.src} alt={main.alt} fill sizes="(min-width: 1024px) 560px, 50vw" className="object-cover" />
+            <div className="group relative h-[320px] overflow-hidden rounded-[16px] lg:h-[420px]">
+              <Image src={main.src} alt={main.alt} fill sizes="(min-width: 1024px) 560px, 50vw" className={cn("object-cover", hoverZoom)} />
             </div>
             <ul className="grid grid-cols-2 gap-4 lg:gap-5">
               {rest.map((photo) => (
-                <li key={photo.src} className="relative h-[152px] overflow-hidden rounded-[16px] lg:h-[200px]">
-                  <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 300px, 25vw" className="object-cover" />
+                <li key={photo.src} className="group relative h-[152px] overflow-hidden rounded-[16px] lg:h-[200px]">
+                  <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 300px, 25vw" className={cn("object-cover", hoverZoom)} />
                 </li>
               ))}
             </ul>
           </div>
         </Reveal>
 
-        <ButtonLink href="#book-form" className="w-full px-5 py-3.5 md:hidden">
+        <ButtonLink href="#book-form" icon="arrow" className="w-full px-5 py-3.5 md:hidden">
           {data.cta}
         </ButtonLink>
       </Container>

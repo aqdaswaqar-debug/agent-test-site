@@ -184,10 +184,15 @@ export function LeadForm({ hours, clinic }: LeadFormProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="mt-0 inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-[12px] bg-(--ls-mint) text-[15px] font-medium text-(--ls-ink) transition-[background-color,transform] duration-150 active:scale-[0.98] disabled:cursor-wait disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--ls-ink) motion-reduce:transition-none lg:rounded-full lg:text-[16px] lg:font-semibold [@media(hover:hover)]:hover:bg-(--ls-mint-hover)"
+          className="group mt-0 inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-[12px] bg-(--ls-mint) text-[15px] font-medium text-(--ls-ink) transition-[background-color,transform,scale] duration-150 active:scale-[0.98] disabled:cursor-wait disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--ls-ink) motion-reduce:transition-none lg:rounded-full lg:text-[16px] lg:font-semibold [@media(hover:hover)]:hover:bg-(--ls-mint-hover)"
         >
           {submitting ? "Booking…" : "Book Free Consultation"}
-          {!submitting ? <ArrowRight aria-hidden className="size-4" /> : null}
+          {!submitting ? (
+            <ArrowRight
+              aria-hidden
+              className="size-4 shrink-0 transition-[translate] duration-200 ease-out motion-safe:[@media(hover:hover)]:group-hover:translate-x-1 motion-safe:group-focus-visible:translate-x-1"
+            />
+          ) : null}
         </button>
         <p className="text-center text-[11px] leading-[1.6] text-(--ls-muted) lg:text-[12px]">
           No payment required. Your details stay confidential.

@@ -18,10 +18,10 @@ export function ProcessSection({ data }: Props) {
           </SectionTitle>
         </div>
 
-        <Reveal>
+        <Reveal stagger>
           <ol className="flex flex-col gap-5 lg:flex-row">
             {data.steps.map((step, i) => (
-              <li key={step.title} className="flex gap-4 lg:flex-1 lg:flex-col lg:gap-4">
+              <li key={step.title} data-reveal-item className="flex gap-4 lg:flex-1 lg:flex-col lg:gap-4">
                 <div className="flex shrink-0 items-center gap-3 self-start lg:w-full lg:self-auto">
                   <span
                     aria-hidden

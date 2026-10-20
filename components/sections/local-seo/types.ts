@@ -24,6 +24,8 @@ export type Clinic = {
   nearestMetro: string;
   metroShort: string;
   mapsUrl: string;
+  /** What the embedded map searches for: the clinic's Google Maps listing (name + area), not a street guess. */
+  mapQuery: string;
   /** Clinic value the lead form books (must be in BOOKABLE_CLINICS). */
   bookingName: BookableClinic;
 };

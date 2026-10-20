@@ -11,13 +11,23 @@ type Props = { data: LocalSeoPage["local"]; clinic: Clinic };
 const inlineLink =
   "rounded-[4px] underline-offset-2 [@media(hover:hover)]:hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--ls-ink)";
 
-/** Decorative stand-in for the static map Figma marks as "to be placed in development". */
-function MapPlaceholder() {
+/**
+ * Figma shows a placeholder ("static map ... to be placed in development"). A visitor deciding whether to
+ * come in wants a real, pannable map, so this embeds Google Maps for the clinic listing. It loads lazily
+ * (below the fold, no API key) over the map-grid pattern, which doubles as the loading state.
+ */
+function ClinicMap({ clinic }: { clinic: Clinic }) {
+  const src = `https://www.google.com/maps?q=${encodeURIComponent(clinic.mapQuery)}&z=16&output=embed`;
   return (
-    <div aria-hidden className="ls-map-grid relative hidden h-[240px] overflow-hidden lg:block">
-      <span className="absolute top-[110px] left-1/2 grid size-5 place-items-center rounded-full bg-white">
-        <span className="size-3 rounded-full bg-(--ls-mint)" />
-      </span>
+    <div className="ls-map-grid relative h-[220px] lg:h-[260px]">
+      <iframe
+        title={`Map showing ${clinic.name}, ${clinic.locality}`}
+        src={src}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        allowFullScreen
+        className="absolute inset-0 size-full border-0"
+      />
     </div>
   );
 }
@@ -56,7 +66,7 @@ export function LocalClinicSection({ data, clinic }: Props) {
 
         <Reveal className="w-full lg:w-[520px] lg:shrink-0">
           <div className="overflow-hidden rounded-[16px] bg-white lg:rounded-[20px] lg:bg-(--ls-cream)">
-            <MapPlaceholder />
+            <ClinicMap clinic={clinic} />
             <div className="flex flex-col gap-3 px-4 py-5 lg:gap-3.5 lg:px-8 lg:pt-7 lg:pb-8">
               <h3 className="text-[17px] leading-[1.5] font-semibold text-(--ls-ink) lg:text-[22px] lg:leading-[1.65] lg:font-medium">
                 {clinic.name}
@@ -91,10 +101,10 @@ export function LocalClinicSection({ data, clinic }: Props) {
                 ))}
               </dl>
               <div className="mt-1 grid grid-cols-2 gap-2 lg:flex lg:gap-3">
-                <ButtonLink href={clinic.mapsUrl} target="_blank" className="px-4 py-3.5 lg:px-7 lg:py-4">
+                <ButtonLink href={clinic.mapsUrl} target="_blank" icon="external" className="px-4 py-3.5 lg:px-7 lg:py-4">
                   Get Directions
                 </ButtonLink>
-                <ButtonLink href={`tel:${clinic.phoneTel}`} variant="secondary" className="px-4 py-3.5 lg:px-7 lg:py-4">
+                <ButtonLink href={`tel:${clinic.phoneTel}`} variant="secondary" icon="phone" className="px-4 py-3.5 lg:px-7 lg:py-4">
                   <ResponsiveText desktop="Call Clinic" mobile="Call" />
                 </ButtonLink>
               </div>

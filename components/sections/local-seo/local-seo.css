@@ -43,3 +43,53 @@
   background-size: 100% 40px, 75px 100%;
   background-position: 0 30px, 40px 0;
 }
+
+/* ---------- Motion (transform/opacity only; all of it is off for prefers-reduced-motion) ---------- */
+
+@keyframes ls-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ls-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes ls-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes ls-settle {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+
+/* Staggered reveal: <Reveal stagger> arms these only for blocks still below the fold.
+   Keyframes animate `transform`, so Tailwind hover utilities (`translate`/`scale`) still compose. */
+.local-seo [data-reveal="pending"] [data-reveal-item] { opacity: 0; }
+.local-seo [data-reveal="shown"] [data-reveal-item] { animation: ls-rise 560ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.local-seo [data-reveal="shown"] [data-reveal-item]:nth-child(2) { animation-delay: 90ms; }
+.local-seo [data-reveal="shown"] [data-reveal-item]:nth-child(3) { animation-delay: 180ms; }
+.local-seo [data-reveal="shown"] [data-reveal-item]:nth-child(4) { animation-delay: 270ms; }
+.local-seo [data-reveal="shown"] [data-reveal-item]:nth-child(5) { animation-delay: 360ms; }
+.local-seo [data-reveal="shown"] [data-reveal-item]:nth-child(n + 6) { animation-delay: 450ms; }
+
+/* Progress bars fill from the left and stop at their level, one after another. */
+.local-seo [data-reveal="pending"] .ls-bar { transform: scaleX(0); }
+.local-seo [data-reveal="shown"] .ls-bar { animation: ls-fill 1100ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.local-seo [data-reveal="shown"] [data-reveal-item]:nth-child(2) .ls-bar { animation-delay: 250ms; }
+.local-seo [data-reveal="shown"] [data-reveal-item]:nth-child(3) .ls-bar { animation-delay: 500ms; }
+
+/* Slow up-and-down drift for small cards that sit on a bigger card (hero clinic card, director badge). */
+.local-seo .ls-float { animation: ls-float 6s ease-in-out infinite; }
+.local-seo .ls-float-slow { animation: ls-float 7.5s ease-in-out 1.2s infinite; }
+
+/* Hero photo eases from a slight zoom on load (no opacity change, so LCP is not delayed). */
+.local-seo .ls-settle { animation: ls-settle 1400ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .local-seo .ls-float,
+  .local-seo .ls-float-slow,
+  .local-seo .ls-settle,
+  .local-seo [data-reveal] [data-reveal-item],
+  .local-seo [data-reveal] .ls-bar { animation: none; opacity: 1; transform: none; }
+}

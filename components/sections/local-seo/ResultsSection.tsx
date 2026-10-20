@@ -21,11 +21,12 @@ export function ResultsSection({ data }: Props) {
           <p className="hidden text-[13px] leading-[1.65] text-(--ls-muted) lg:block">{data.note}</p>
         </div>
 
-        <Reveal className="flex flex-1 flex-col gap-4">
+        <Reveal stagger className="flex flex-1 flex-col gap-4">
           <ol className="flex flex-col gap-3 lg:gap-4">
             {data.rows.map((row) => (
               <li
                 key={row.period}
+                data-reveal-item
                 className="flex flex-col gap-3 rounded-[14px] bg-white px-4 py-3.5 lg:flex-row lg:items-center lg:gap-8 lg:rounded-[16px] lg:px-8 lg:py-7"
               >
                 <div className="flex flex-col gap-1 lg:w-[200px] lg:shrink-0">
@@ -43,7 +44,8 @@ export function ResultsSection({ data }: Props) {
                     role="img"
                     aria-label={`Indicative progress: ${row.progress}%`}
                   >
-                    <div className={`h-full rounded-[3px] bg-(--ls-mint) ${PROGRESS_WIDTH[row.progress] ?? "w-full"}`} />
+                    {/* Fills from the left and stops at this stage's level when the list scrolls in. */}
+                    <div className={`ls-bar h-full origin-left rounded-[3px] bg-(--ls-mint) ${PROGRESS_WIDTH[row.progress] ?? "w-full"}`} />
                   </div>
                 </div>
               </li>
